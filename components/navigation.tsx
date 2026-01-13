@@ -1,0 +1,143 @@
+"use client"
+
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import { Menu, X, ShoppingBag, User } from "lucide-react"
+import { useState, useEffect } from "react"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { CartButton } from "@/components/cart-button"
+import { WishlistButton } from "@/components/wishlist-button"
+import { NotificationsButton } from "@/components/notifications-button"
+
+export function Navigation() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
+    { href: "/blogs", label: "Blogs" },
+    { href: "/about", label: "About" },
+    { href: "/feedback", label: "Feedback" },
+  ]
+
+  return (
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group transition-transform hover:scale-105">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-primary/50 transition-shadow">
+              <ShoppingBag className="w-5 h-5 text-primary-foreground" />
+            </div>
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              CampusCart
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-all hover:text-primary relative group ${
+                  pathname === link.href ? "text-primary" : "text-muted-foreground"
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full ${
+                    pathname === link.href ? "w-full" : ""
+                  }`}
+                />
+              </Link>
+            ))}
+          </div>
+
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
+            <NotificationsButton />
+            <WishlistButton />
+            <CartButton />
+            <Button variant="ghost" size="icon" className="hover:bg-primary/10 transition-all hover:scale-110">
+              <User className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" asChild className="hover:bg-primary/10">
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button
+              asChild
+              className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity shadow-lg hover:shadow-primary/50"
+            >
+              <Link href="/register">Get Started</Link>
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-lg">
+            <div className="flex items-center justify-around px-4 pb-4 border-b border-border">
+              <ThemeToggle />
+              <NotificationsButton />
+              <WishlistButton />
+              <CartButton />
+              <Button variant="ghost" size="icon" className="hover:bg-primary/10">
+                <User className="h-5 w-5" />
+              </Button>
+            </div>
+            <div className="flex flex-col gap-4 pt-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-sm font-medium px-4 py-2 rounded-lg transition-all hover:bg-primary/10 ${
+                    pathname === link.href ? "text-primary bg-primary/5" : "text-muted-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="flex flex-col gap-2 px-4 pt-2 border-t border-border">
+                <Button variant="outline" asChild className="w-full bg-transparent">
+                  <Link href="/login" onClick={() => setIsOpen(false)}>
+                    Login
+                  </Link>
+                </Button>
+                <Button asChild className="w-full">
+                  <Link href="/register" onClick={() => setIsOpen(false)}>
+                    Get Started
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  )
+}
