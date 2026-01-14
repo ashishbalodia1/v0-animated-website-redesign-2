@@ -132,12 +132,12 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-blue-950">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/5 to-pink-600/5" />
+      <section className="relative pt-32 pb-20 overflow-hidden" style={{background: 'linear-gradient(135deg, #2874F0 0%, #1557B0 100%)'}}>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-white/10 to-transparent" />
         <div
           className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
+            backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
             backgroundSize: "48px 48px",
             transform: `translateY(${scrollY * 0.3}px)`,
           }}
@@ -149,20 +149,20 @@ export default function HomePage() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <Badge className="mb-6 px-4 py-2 bg-blue-600 text-white border-0 hover:bg-blue-700 transition-all shadow-lg">
+            <Badge className="mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 transition-all shadow-lg">
               <Sparkles className="w-3.5 h-3.5 mr-1.5" />
               Electronics Components Store
             </Badge>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight">
-              <span className="text-blue-600 dark:text-blue-400">Your Complete</span>
+              <span className="text-white">Your Complete</span>
               <br />
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="text-yellow-300">
                 Electronics Hub
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
+            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
               Arduino, Raspberry Pi, Sensors, and everything you need for your electronics projects. 
               Quality components at great prices.
             </p>
@@ -171,7 +171,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 asChild
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 hover:shadow-xl hover:shadow-blue-500/50 transition-all duration-300 group h-12 px-8"
+                className="w-full sm:w-auto bg-white text-[#2874F0] hover:bg-yellow-300 hover:text-[#2874F0] hover:shadow-xl transition-all duration-300 group h-12 px-8 font-semibold"
               >
                 <Link href="/products">
                   Shop Now
@@ -182,17 +182,17 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="w-full sm:w-auto border-2 border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950 h-12 px-8"
+                className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/20 backdrop-blur-sm h-12 px-8 font-semibold"
               >
                 <Link href="/blogs">Read Blogs</Link>
               </Button>
             </div>
 
             <div className="relative max-w-xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <Input
                 placeholder="Search for Arduino, sensors, modules..."
-                className="pl-12 h-14 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-lg focus:border-blue-600"
+                className="pl-12 h-14 bg-white border-0 shadow-2xl focus:ring-2 focus:ring-yellow-300 rounded-sm"
               />
             </div>
           </div>
