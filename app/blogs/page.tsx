@@ -1,83 +1,114 @@
 "use client"
 
 import { useState, useEffect, Suspense } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { BookOpen, Calendar, Clock, User, Search, TrendingUp, Tag, ArrowRight } from "lucide-react"
+import { BookOpen, Calendar, Clock, User, Search, TrendingUp, Tag, ArrowRight, Heart, Share2 } from "lucide-react"
 
 const blogPosts = [
   {
     id: 1,
-    title: "10 Essential Tech Gadgets Every Student Needs in 2026",
+    title: "Top 10 Electronics Components Every Maker Needs",
     excerpt:
-      "Discover the must-have technology that will make your college life easier, more productive, and more enjoyable.",
-    category: "Technology",
-    author: "Alex Johnson",
-    date: "Jan 3, 2026",
-    readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop",
+      "From Arduino boards to sensors, discover the essential components that will kickstart your electronics journey and help you build amazing projects.",
+    category: "Electronics",
+    author: "Rajesh Kumar",
+    date: "Jan 10, 2026",
+    readTime: "8 min read",
+    image: "/image 1.jpg",
     featured: true,
+    likes: 234,
   },
   {
     id: 2,
-    title: "How to Save Money While Shopping in College",
-    excerpt: "Smart budgeting tips and tricks to maximize your student discounts and stretch your dollar further.",
-    category: "Finance",
-    author: "Sarah Martinez",
-    date: "Dec 28, 2025",
-    readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3c?w=800&h=500&fit=crop",
+    title: "IoT Projects with ESP32: A Complete Beginner's Guide",
+    excerpt: "Learn how to build your first IoT project using ESP32. Connect sensors, control devices remotely, and create smart home solutions easily.",
+    category: "IoT",
+    author: "Priya Sharma",
+    date: "Jan 8, 2026",
+    readTime: "12 min read",
+    image: "/image 2.jpg",
     featured: true,
+    likes: 189,
   },
   {
     id: 3,
-    title: "Best Study Accessories for Remote Learning",
-    excerpt: "Transform your dorm room into the perfect study environment with these carefully selected accessories.",
-    category: "Lifestyle",
-    author: "Michael Chen",
-    date: "Dec 25, 2025",
-    readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=500&fit=crop",
+    title: "Arduino vs Raspberry Pi: Which One Should You Choose?",
+    excerpt: "A detailed comparison of Arduino and Raspberry Pi platforms to help you decide which microcontroller board is perfect for your next project.",
+    category: "Comparison",
+    author: "Amit Patel",
+    date: "Jan 5, 2026",
+    readTime: "10 min read",
+    image: "/macbook-air-laptop-silver.jpg",
     featured: false,
+    likes: 156,
   },
   {
     id: 4,
-    title: "Understanding Student EMI Options: A Complete Guide",
-    excerpt: "Everything you need to know about flexible payment plans and interest-free EMI for students.",
-    category: "Finance",
-    author: "Emily Rodriguez",
-    date: "Dec 20, 2025",
-    readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=500&fit=crop",
+    title: "Building a Weather Station with Sensors",
+    excerpt: "Step-by-step guide to creating your own weather monitoring system using temperature, humidity, and pressure sensors with real-time data display.",
+    category: "Projects",
+    author: "Sneha Reddy",
+    date: "Jan 3, 2026",
+    readTime: "15 min read",
+    image: "/ipad-pro-tablet-with-stylus.jpg",
     featured: false,
+    likes: 142,
   },
   {
     id: 5,
-    title: "Top 5 Laptops for Computer Science Students",
-    excerpt: "A comprehensive comparison of the best laptops for coding, development, and all your CS coursework.",
-    category: "Technology",
-    author: "David Park",
-    date: "Dec 15, 2025",
-    readTime: "10 min read",
-    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&h=500&fit=crop",
+    title: "3D Printing for Electronics: Enclosures and Custom Parts",
+    excerpt: "Learn how to design and print custom enclosures for your electronics projects. Perfect housings for Arduino, Raspberry Pi, and more.",
+    category: "3D Printing",
+    author: "Vikram Singh",
+    date: "Jan 2, 2026",
+    readTime: "11 min read",
+    image: "/sony-premium-headphones-black.jpg",
     featured: false,
+    likes: 98,
   },
   {
     id: 6,
-    title: "Campus Life Essentials: What to Buy First Semester",
-    excerpt: "A first-year student's guide to the essential items that will make your transition to college smooth.",
-    category: "Lifestyle",
-    author: "Jessica Lee",
-    date: "Dec 10, 2025",
-    readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=500&fit=crop",
+    title: "Motor Control with L298N: Robotics Basics",
+    excerpt: "Master motor control for robotics projects. Learn to drive DC motors, control speed, and build your first robot chassis.",
+    category: "Robotics",
+    author: "Ananya Desai",
+    date: "Dec 30, 2025",
+    readTime: "9 min read",
+    image: "/airpods-pro-white-wireless-earbuds.jpg",
     featured: false,
+    likes: 167,
+  },
+  {
+    id: 7,
+    title: "Understanding I2C and SPI Communication Protocols",
+    excerpt: "Deep dive into serial communication protocols. Learn when to use I2C vs SPI and how to connect multiple sensors to your microcontroller.",
+    category: "Electronics",
+    author: "Karan Malhotra",
+    date: "Dec 28, 2025",
+    readTime: "14 min read",
+    image: "/image 1.jpg",
+    featured: false,
+    likes: 203,
+  },
+  {
+    id: 8,
+    title: "Best Power Supply Solutions for Your Projects",
+    excerpt: "Choose the right power supply for your electronics. From batteries to buck converters, ensure stable power for reliable operation.",
+    category: "Power",
+    author: "Meera Joshi",
+    date: "Dec 25, 2025",
+    readTime: "7 min read",
+    image: "/image 2.jpg",
+    featured: false,
+    likes: 121,
   },
 ]
 
-const categories = ["All", "Technology", "Finance", "Lifestyle", "Tips & Tricks"]
+const categories = ["All", "Electronics", "IoT", "Robotics", "Projects", "3D Printing", "Power", "Comparison"]
 
 function BlogsPageContent() {
   const [selectedCategory, setSelectedCategory] = useState("All")
@@ -159,13 +190,15 @@ function BlogsPageContent() {
             >
               <div className="grid lg:grid-cols-2 gap-0">
                 <div className="relative h-64 lg:h-auto overflow-hidden bg-muted">
-                  <img
-                    src={featuredPost.image || "/placeholder.svg"}
+                  <Image
+                    src={featuredPost.image || "/placeholder.jpg"}
                     alt={featuredPost.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent lg:bg-gradient-to-r" />
-                  <Badge className="absolute top-4 left-4 bg-accent text-accent-foreground">Featured</Badge>
+                  <Badge className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white border-0">Featured</Badge>
                 </div>
                 <div className="p-8 lg:p-12 flex flex-col justify-center">
                   <Badge variant="secondary" className="w-fit mb-4">
@@ -218,22 +251,25 @@ function BlogsPageContent() {
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <div className="relative h-48 overflow-hidden bg-muted">
-                    <img
-                      src={post.image || "/placeholder.svg"}
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <div className="p-6">
-                    <Badge variant="secondary" className="mb-3">
-                      {post.category}
-                    </Badge>
-                    <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2 leading-relaxed">{post.excerpt}</p>
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground pt-4 border-t border-border">
+                  <Image
+                    src={post.image || "/placeholder.jpg"}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <Badge variant="secondary" className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm">
+                    {post.category}
+                  </Badge>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2 leading-relaxed">{post.excerpt}</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
                       <div className="flex items-center gap-1.5">
                         <User className="w-3.5 h-3.5" />
                         <span>{post.author}</span>
@@ -243,6 +279,13 @@ function BlogsPageContent() {
                         <span>{post.readTime}</span>
                       </div>
                     </div>
+                    <div className="flex items-center gap-2">
+                      <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-pink-500">
+                        <Heart className="h-4 w-4" />
+                      </Button>
+                      <span className="text-xs text-muted-foreground">{post.likes}</span>
+                    </div>
+                  </div>
                   </div>
                 </Card>
               ))}
