@@ -29,60 +29,60 @@ import {
 } from "lucide-react"
 
 const categories = [
-  { name: "Electronics", icon: Laptop, color: "from-blue-500 to-cyan-500", href: "/services#electronics" },
-  { name: "Mobiles", icon: Smartphone, color: "from-purple-500 to-pink-500", href: "/services#mobiles" },
-  { name: "Books", icon: BookOpen, color: "from-orange-500 to-red-500", href: "/services#books" },
-  { name: "Audio", icon: Headphones, color: "from-green-500 to-emerald-500", href: "/services#audio" },
-  { name: "Accessories", icon: Package, color: "from-yellow-500 to-orange-500", href: "/services#accessories" },
-  { name: "Home", icon: HomeIcon, color: "from-indigo-500 to-blue-500", href: "/services#home" },
+  { name: "Microcontrollers", icon: Laptop, color: "from-blue-600 to-blue-700", href: "/products" },
+  { name: "Sensors", icon: Smartphone, color: "from-purple-600 to-purple-700", href: "/products" },
+  { name: "Motor Drivers", icon: Package, color: "from-orange-600 to-orange-700", href: "/products" },
+  { name: "Displays", icon: Eye, color: "from-green-600 to-green-700", href: "/products" },
+  { name: "Power Supply", icon: Zap, color: "from-yellow-600 to-yellow-700", href: "/products" },
+  { name: "Communication", icon: Smartphone, color: "from-indigo-600 to-indigo-700", href: "/products" },
 ]
 
 const trendingProducts = [
   {
     id: 1,
-    name: "MacBook Air M3",
-    price: 89999,
-    originalPrice: 119999,
-    image: "/macbook-air-laptop-silver.jpg",
+    name: "Arduino UNO R3",
+    price: 899,
+    originalPrice: 1299,
+    image: "/1. Microcontrollers & Development Boards/Arduino UNO.png",
     rating: 4.8,
     reviews: 234,
-    discount: 25,
+    discount: 31,
     trending: true,
     likes: 1289,
   },
   {
     id: 2,
-    name: "AirPods Pro Gen 2",
-    price: 22999,
-    originalPrice: 26999,
-    image: "/airpods-pro-white-wireless-earbuds.jpg",
+    name: "ESP32 DevKit",
+    price: 699,
+    originalPrice: 999,
+    image: "/1. Microcontrollers & Development Boards/ESP32.png",
     rating: 4.9,
     reviews: 567,
-    discount: 15,
+    discount: 30,
     trending: true,
     likes: 2341,
   },
   {
     id: 3,
-    name: "iPad Pro 12.9",
-    price: 99999,
-    originalPrice: 129999,
-    image: "/ipad-pro-tablet-with-stylus.jpg",
+    name: "DHT22 Sensor",
+    price: 249,
+    originalPrice: 399,
+    image: "/2. Sensors/DHT22.png",
     rating: 4.7,
     reviews: 189,
-    discount: 23,
+    discount: 38,
     hot: true,
     likes: 987,
   },
   {
     id: 4,
-    name: "Sony WH-1000XM5",
-    price: 27999,
-    originalPrice: 34999,
-    image: "/sony-premium-headphones-black.jpg",
+    name: "L298N Motor Driver",
+    price: 249,
+    originalPrice: 349,
+    image: "/3. Motor Drivers, wheels & Power Control/L298N Motor Driver.jpg",
     rating: 4.9,
     reviews: 423,
-    discount: 20,
+    discount: 29,
     trending: true,
     likes: 1567,
   },
@@ -91,30 +91,30 @@ const trendingProducts = [
 const features = [
   {
     icon: Zap,
-    title: "Lightning Fast Delivery",
-    description: "Get your orders delivered within 24-48 hours on campus",
+    title: "Fast Shipping",
+    description: "Quick delivery of electronics components across India",
   },
   {
     icon: Shield,
-    title: "Secure Payments",
-    description: "100% safe and encrypted transactions with multiple payment options",
+    title: "Genuine Products",
+    description: "100% authentic components with quality assurance",
   },
   {
     icon: Clock,
     title: "Easy Returns",
-    description: "7-day hassle-free return policy with free pickup",
+    description: "7-day return policy for defective products",
   },
   {
     icon: TrendingUp,
-    title: "Student Exclusive",
-    description: "Special discounts and EMI options for verified students",
+    title: "Best Prices",
+    description: "Competitive prices on all electronics components",
   },
 ]
 
 const stats = [
-  { value: "50K+", label: "Active Students" },
-  { value: "10K+", label: "Products" },
-  { value: "100+", label: "Campus Partners" },
+  { value: "120+", label: "Products" },
+  { value: "9", label: "Categories" },
+  { value: "500+", label: "Happy Makers" },
   { value: "4.8/5", label: "Rating" },
 ]
 
@@ -132,8 +132,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background" />
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-blue-950">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/5 to-pink-600/5" />
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -149,32 +149,32 @@ export default function HomePage() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <Badge className="mb-6 px-4 py-2 bg-primary text-primary-foreground border-primary/30 hover:scale-105 transition-transform">
+            <Badge className="mb-6 px-4 py-2 bg-blue-600 text-white border-0 hover:bg-blue-700 transition-all shadow-lg">
               <Sparkles className="w-3.5 h-3.5 mr-1.5" />
-              Welcome to the Future of Campus Shopping
+              Electronics Components Store
             </Badge>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight">
-              <span className="text-blue-900 dark:text-white">Your Campus</span>
+              <span className="text-blue-600 dark:text-blue-400">Your Complete</span>
               <br />
-              <span className="bg-gradient-to-r from-purple-700 via-pink-600 to-rose-600 dark:from-purple-400 dark:via-pink-400 dark:to-rose-400 bg-clip-text text-transparent">
-                Shopping Destination
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Electronics Hub
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
-              Exclusive student discounts, flexible EMI options, and lightning-fast delivery on all your favorite
-              products. Built by students, for students.
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
+              Arduino, Raspberry Pi, Sensors, and everything you need for your electronics projects. 
+              Quality components at great prices.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <Button
                 size="lg"
                 asChild
-                className="w-full sm:w-auto bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-xl hover:shadow-primary/50 transition-all duration-300 group h-12 px-8"
+                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 hover:shadow-xl hover:shadow-blue-500/50 transition-all duration-300 group h-12 px-8"
               >
-                <Link href="/register">
-                  Start Shopping
+                <Link href="/products">
+                  Shop Now
                   <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -182,17 +182,17 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="w-full sm:w-auto border-border hover:bg-muted h-12 px-8 bg-transparent"
+                className="w-full sm:w-auto border-2 border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950 h-12 px-8"
               >
-                <Link href="/services">Explore Services</Link>
+                <Link href="/blogs">Read Blogs</Link>
               </Button>
             </div>
 
             <div className="relative max-w-xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
               <Input
-                placeholder="Search for electronics, books, accessories..."
-                className="pl-12 h-14 bg-card border-border shadow-lg"
+                placeholder="Search for Arduino, sensors, modules..."
+                className="pl-12 h-14 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-lg focus:border-blue-600"
               />
             </div>
           </div>
