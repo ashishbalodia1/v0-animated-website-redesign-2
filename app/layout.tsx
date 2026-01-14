@@ -5,6 +5,9 @@ import { Analytics } from "@vercel/analytics/next"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { LiveChat } from "@/components/live-chat"
+import { Toaster } from "@/components/ui/toaster"
+import { CartProvider } from "@/contexts/CartContext"
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -40,12 +43,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
-        <Navigation />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        <LiveChat />
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <CartProvider>
+            <Navigation />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+            <LiveChat />
+            <Toaster />
+          </CartProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

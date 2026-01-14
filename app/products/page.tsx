@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -13,6 +13,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useCart } from "@/contexts/CartContext"
+import { useToast } from "@/hooks/use-toast"
 
 // Product categories with their items
 const productCategories = [
@@ -192,16 +194,26 @@ export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [sortBy, setSortBy] = useState("popularity")
-  const [wishlist, setWishlist] = useState<Set<string>>(new Set())
+  const { addToCart, toggleWishlist, isInWishlist } = useCart()
+  const { toast } = useToast()
 
-  const toggleWishlist = (productName: string) => {
-    const newWishlist = new Set(wishlist)
-    if (newWishlist.has(productName)) {
-      newWishlist.delete(productName)
-    } else {
-      newWishlist.add(productName)
-    }
-    setWishlist(newWishlist)
+  const handleAddToCart = (product: any, category: string) => {
+    addToCart({ ...product, category })
+    toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your cart.`,
+    })
+  }
+
+  const handleToggleWishlist = (product: any, category: string) => {
+    toggleWishlist({ ...product, category })
+    const inWishlist = isInWishlist(product.name)
+    toast({
+      title: inWishlist ? "Removed from wishlist" : "Added to wishlist",
+      description: inWishlist 
+        ? `${product.name} has been removed from your wishlist.`
+        : `${product.name} has been added to your wishlist.`,
+    })
   }
 
   const filteredCategories = productCategories
@@ -353,9 +365,9 @@ export default function ProductsPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                       {sortedProducts.map((product, idx) => (
-                        <Card key={idx} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <Card key={idx} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden border-border/50">
                           <CardHeader className="p-0">
-                            <div className="relative aspect-square bg-gradient-to-br from-muted to-muted/50 overflow-hidden">
+                            <div className="relative aspect-square bg-gradient-to-br from-muted/30 to-muted/10 overflow-hidden">
                               <Image
                                 src={`/${category.folder}/${product.image}`}
                                 alt={product.name}
@@ -364,18 +376,18 @@ export default function ProductsPage() {
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                               />
                               <button
-                                onClick={() => toggleWishlist(product.name)}
-                                className="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full hover:bg-background transition-colors"
+                                onClick={() => handleToggleWishlist(product, category.name)}
+                                className="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full hover:bg-background transition-colors z-10"
                               >
                                 <Heart
-                                  className={`h-5 w-5 ${
-                                    wishlist.has(product.name)
+                                  className={`h-5 w-5 transition-all ${
+                                    isInWishlist(product.name)
                                       ? "fill-red-500 text-red-500"
-                                      : "text-muted-foreground"
+                                      : "text-muted-foreground hover:text-red-500"
                                   }`}
                                 />
                               </button>
-                              <Badge className="absolute bottom-3 left-3 bg-primary">
+                              <Badge className="absolute bottom-3 left-3 bg-primary/90 backdrop-blur-sm">
                                 <Star className="h-3 w-3 fill-current mr-1" />
                                 {product.rating}
                               </Badge>
@@ -395,7 +407,11 @@ export default function ProductsPage() {
                             </div>
                           </CardContent>
                           <CardFooter className="p-4 pt-0 gap-2">
-                            <Button className="flex-1 group/btn" size="sm">
+                            <Button 
+                              onClick={() => handleAddToCart(product, category.name)}
+                              className="flex-1 group/btn" 
+                              size="sm"
+                            >
                               <ShoppingCart className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform" />
                               Add to Cart
                             </Button>
