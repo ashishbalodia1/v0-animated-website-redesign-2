@@ -155,14 +155,14 @@ export default function HomePage() {
             </Badge>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight">
-              <span className="text-gray-900">Your Complete</span>
+              <span className="text-black">Your Complete</span>
               <br />
               <span className="text-[#2874F0]">
                 Electronics Hub
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
+            <p className="text-lg md:text-xl text-black mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
               Arduino, Raspberry Pi, Sensors, and everything you need for your electronics projects. 
               Quality components at great prices.
             </p>
@@ -214,7 +214,7 @@ export default function HomePage() {
                 <div className="text-3xl md:text-4xl font-bold text-[#2874F0] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
+                <div className="text-sm text-black font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -229,10 +229,10 @@ export default function HomePage() {
               <div className="flex items-center gap-3 mb-2">
                 <Flame className="w-8 h-8 text-orange-500" />
                 <h2 className="text-3xl md:text-5xl font-bold">
-                  <span className="text-gray-900">Trending</span> <span className="text-[#2874F0]">Now</span>
+                  <span className="text-black">Trending</span> <span className="text-[#2874F0]">Now</span>
                 </h2>
               </div>
-              <p className="text-muted-foreground text-lg">Most popular products this week</p>
+              <p className="text-black text-lg">Most popular products this week</p>
             </div>
             <Button variant="ghost" asChild className="hidden md:flex">
               <Link href="/services">
@@ -301,18 +301,18 @@ export default function HomePage() {
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="font-semibold text-base mb-2 line-clamp-2 text-gray-800 group-hover:text-[#2874F0] transition-colors">
+                  <h3 className="font-semibold text-base mb-2 line-clamp-2 text-black group-hover:text-[#2874F0] transition-colors">
                     {product.name}
                   </h3>
 
                   <div className="flex items-center gap-1 mb-2">
                     <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm font-medium text-gray-700">{product.rating}</span>
-                    <span className="text-xs text-gray-500">({product.reviews})</span>
+                    <span className="text-sm font-medium text-black">{product.rating}</span>
+                    <span className="text-xs text-gray-600">({product.reviews})</span>
                   </div>
 
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl font-bold text-gray-900">₹{product.price.toLocaleString()}</span>
+                    <span className="text-2xl font-bold text-black">₹{product.price.toLocaleString()}</span>
                     {product.originalPrice && (
                       <span className="text-sm text-gray-500 line-through">
                         ₹{product.originalPrice.toLocaleString()}
@@ -357,10 +357,10 @@ export default function HomePage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
               Shop by <span className="text-[#2874F0]">Category</span>
             </h2>
-            <p className="text-gray-600 text-lg">Find exactly what you need for your projects</p>
+            <p className="text-black text-lg">Find exactly what you need for your projects</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -380,7 +380,7 @@ export default function HomePage() {
                       >
                         <Icon className="w-8 h-8 text-white" />
                       </div>
-                      <h3 className="font-semibold text-sm text-gray-900">{category.name}</h3>
+                      <h3 className="font-semibold text-sm text-black">{category.name}</h3>
                     </div>
                   </Card>
                 </Link>
@@ -394,10 +394,10 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
               Why Shop <span className="text-[#2874F0]">With Us</span>
             </h2>
-            <p className="text-gray-600 text-lg">Quality components, great prices, fast delivery</p>
+            <p className="text-black text-lg">Quality components, great prices, fast delivery</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -415,8 +415,8 @@ export default function HomePage() {
                     <div className="w-16 h-16 mx-auto rounded-full bg-[#2874F0] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 text-gray-900">{feature.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
+                    <h3 className="font-semibold text-lg mb-2 text-black">{feature.title}</h3>
+                    <p className="text-sm text-black leading-relaxed">{feature.description}</p>
                   </div>
                 </Card>
               )
@@ -429,10 +429,10 @@ export default function HomePage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
               Loved by <span className="text-[#2874F0]">Makers</span>
             </h2>
-            <p className="text-gray-600 text-lg">See what our community has to say</p>
+            <p className="text-black text-lg">See what our community has to say</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -470,13 +470,13 @@ export default function HomePage() {
                       <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-4 leading-relaxed">{testimonial.content}</p>
+                  <p className="text-black mb-4 leading-relaxed">{testimonial.content}</p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-[#2874F0] flex items-center justify-center text-white font-semibold">
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="font-semibold text-sm text-gray-900">{testimonial.name}</div>
+                      <div className="font-semibold text-sm text-black">{testimonial.name}</div>
                       <div className="text-xs text-gray-600">{testimonial.role}</div>
                     </div>
                   </div>
