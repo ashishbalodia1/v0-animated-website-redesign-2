@@ -14,62 +14,62 @@ export default function RegisterPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-accent/5 to-background pt-20 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white pt-20 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
         {/* Left Side - Info */}
         <div className="hidden lg:block space-y-8">
           <div className="space-y-4">
-            <Badge className="px-4 py-2 bg-gradient-to-r from-primary/20 to-accent/20 text-primary border-primary/30">
+            <Badge className="px-4 py-2 bg-[#2874F0] text-white border-0">
               <GraduationCap className="w-4 h-4 mr-2" />
-              Student Registration
+              Maker Registration
             </Badge>
             <h1 className="text-5xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Join CampusCart
+              <span className="text-[#2874F0]">
+                Join ElectronicsHub
               </span>
               <br />
-              <span className="text-foreground">Today!</span>
+              <span className="text-gray-900">Today!</span>
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Get exclusive access to student discounts, EMI options, and fast delivery right to your campus.
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Get access to quality components, competitive prices, and fast delivery for all your projects.
             </p>
           </div>
 
           <div className="space-y-4">
             {[
-              { icon: CheckCircle2, text: "Exclusive student discounts up to 50%" },
-              { icon: CheckCircle2, text: "0% interest EMI on orders above ₹5000" },
-              { icon: CheckCircle2, text: "Free delivery on campus orders" },
+              { icon: CheckCircle2, text: "Quality electronics components" },
+              { icon: CheckCircle2, text: "Competitive prices on all products" },
+              { icon: CheckCircle2, text: "Fast delivery across India" },
               { icon: CheckCircle2, text: "7-day easy return policy" },
             ].map((benefit, index) => (
               <div key={index} className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <benefit.icon className="w-4 h-4 text-primary-foreground" />
+                <div className="w-6 h-6 rounded-full bg-[#2874F0] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <benefit.icon className="w-4 h-4 text-white" />
                 </div>
-                <p className="text-muted-foreground">{benefit.text}</p>
+                <p className="text-gray-700">{benefit.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20">
-            <p className="text-sm text-muted-foreground mb-2">Trusted by students from</p>
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 border border-gray-200">
+            <p className="text-sm text-gray-600 mb-2">Trusted by makers from</p>
             <div className="flex items-center gap-4 flex-wrap">
-              <Badge variant="secondary">50+ Colleges</Badge>
-              <Badge variant="secondary">10K+ Students</Badge>
-              <Badge variant="secondary">4.8★ Rating</Badge>
+              <Badge className="bg-[#2874F0] text-white border-0">1000+ Makers</Badge>
+              <Badge className="bg-[#2874F0] text-white border-0">100+ Colleges</Badge>
+              <Badge className="bg-[#2874F0] text-white border-0">4.8★ Rating</Badge>
             </div>
           </div>
         </div>
 
         {/* Right Side - Form */}
-        <Card className="border-border shadow-2xl">
+        <Card className="border-gray-200 shadow-xl bg-white">
           <div className="p-8">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <UserPlus className="w-8 h-8 text-primary-foreground" />
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center">
+                <UserPlus className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-2">Create Account</h2>
-              <p className="text-muted-foreground">Sign up to start shopping</p>
+              <h2 className="text-3xl font-bold mb-2 text-gray-900">Create Account</h2>
+              <p className="text-gray-600">Sign up to start shopping</p>
             </div>
 
             <form className="space-y-5">

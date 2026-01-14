@@ -13,47 +13,47 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-accent/5 to-background pt-20 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white pt-20 flex items-center justify-center p-4">
       <div className="w-full max-w-5xl grid lg:grid-cols-2 gap-8 items-center">
         {/* Left Side - Form */}
-        <Card className="border-border shadow-2xl order-2 lg:order-1">
+        <Card className="border-gray-200 shadow-xl order-2 lg:order-1 bg-white">
           <div className="p-8">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <LogIn className="w-8 h-8 text-primary-foreground" />
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center">
+                <LogIn className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-2">Welcome Back!</h2>
-              <p className="text-muted-foreground">Sign in to continue shopping</p>
+              <h2 className="text-3xl font-bold mb-2 text-gray-900">Welcome Back!</h2>
+              <p className="text-gray-600">Sign in to continue shopping</p>
             </div>
 
             <form className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email" className="text-gray-900">Email Address</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                  <Input id="email" type="email" placeholder="student@university.edu" className="pl-11 h-11" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input id="email" type="email" placeholder="your@email.com" className="pl-11 h-11 border-gray-300" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Password</Label>
-                  <Link href="/forgot-password" className="text-sm text-primary hover:underline">
+                  <Label htmlFor="password" className="text-gray-900">Password</Label>
+                  <Link href="/forgot-password" className="text-sm text-[#2874F0] hover:underline">
                     Forgot password?
                   </Link>
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
-                    className="pl-11 pr-11 h-11"
+                    className="pl-11 pr-11 h-11 border-gray-300"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-900 transition-colors"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -64,9 +64,9 @@ export default function LoginPage() {
                 <input
                   type="checkbox"
                   id="remember"
-                  className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
+                  className="w-4 h-4 rounded border-gray-300 text-[#2874F0] focus:ring-[#2874F0]"
                 />
-                <Label htmlFor="remember" className="text-sm text-muted-foreground font-normal cursor-pointer">
+                <Label htmlFor="remember" className="text-sm text-gray-600 font-normal cursor-pointer">
                   Remember me for 30 days
                 </Label>
               </div>
@@ -74,7 +74,7 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full h-12 bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg hover:shadow-primary/50 transition-all"
+                className="w-full h-12 bg-[#2874F0] text-white hover:bg-[#2366d1] transition-all"
               >
                 Sign In
               </Button>

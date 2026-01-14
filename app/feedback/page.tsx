@@ -54,24 +54,24 @@ export default function FeedbackPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-white pt-20">
       {/* Hero Section */}
-      <section className="relative py-16 overflow-hidden bg-gradient-to-br from-primary/10 via-accent/5 to-background">
+      <section className="relative py-16 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-4">
           <div
             className={`max-w-3xl mx-auto text-center transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <Badge className="mb-4 px-4 py-2 bg-gradient-to-r from-primary/20 to-accent/20 text-white border-primary/30">
+            <Badge className="mb-4 px-4 py-2 bg-[#2874F0] text-white border-0">
               <MessageCircle className="w-3.5 h-3.5 mr-1.5" />
               Get In Touch
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance">
-              <span className="text-blue-900 dark:text-white">We're Here to Help</span>
+              <span className="text-[#2874F0]">We're Here to Help</span>
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Have a question, suggestion, or need assistance? Our student support team is ready to help you with
+            <p className="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
+              Have a question, suggestion, or need assistance? Our support team is ready to help you with
               anything you need.
             </p>
           </div>

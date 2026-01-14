@@ -221,19 +221,19 @@ export default function BlogsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pt-20">
+    <div className="min-h-screen bg-white pt-20">
       {/* Hero Section */}
-      <section className="py-12 border-b bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10">
+      <section className="py-12 border-b bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 mb-6">
-              <BookOpen className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary">Electronics Blog</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2874F0]/10 mb-6">
+              <BookOpen className="w-4 h-4 text-[#2874F0]" />
+              <span className="text-sm font-semibold text-[#2874F0]">Electronics Blog</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
               Learn Electronics & IoT
             </h1>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-lg text-gray-700 mb-8">
               Tutorials, guides, and tips for makers, students, and hobbyists
             </p>
             
@@ -253,7 +253,7 @@ export default function BlogsPage() {
       </section>
 
       {/* Categories */}
-      <section className="py-6 border-b sticky top-16 bg-background/95 backdrop-blur-lg z-40">
+      <section className="py-6 border-b sticky top-16 bg-white shadow-sm z-40">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-3 overflow-x-auto pb-2">
             {categories.map((category) => (
@@ -262,8 +262,8 @@ export default function BlogsPage() {
                 onClick={() => setSelectedCategory(category)}
                 variant={selectedCategory === category ? "default" : "outline"}
                 className={selectedCategory === category
-                  ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white whitespace-nowrap"
-                  : "whitespace-nowrap"
+                  ? "bg-[#2874F0] hover:bg-[#2366d1] text-white whitespace-nowrap"
+                  : "whitespace-nowrap border-gray-300 text-gray-700 hover:border-[#2874F0] hover:text-[#2874F0]"
                 }
               >
                 <Tag className="w-4 h-4 mr-2" />

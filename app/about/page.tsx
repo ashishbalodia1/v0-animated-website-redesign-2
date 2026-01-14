@@ -72,27 +72,27 @@ export default function AboutPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-white pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-primary/10 via-accent/5 to-background">
+      <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-4">
           <div
             className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <Badge className="mb-6 px-4 py-2 bg-gradient-to-r from-primary/20 to-accent/20 text-white border-primary/30">
+            <Badge className="mb-6 px-4 py-2 bg-[#2874F0] text-white border-0">
               <Target className="w-3.5 h-3.5 mr-1.5" />
               Our Story
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance leading-tight">
-              <span className="text-blue-900 dark:text-white">Built by Students,</span>
+              <span className="text-[#2874F0]">Your Trusted Partner,</span>
               <br />
-              <span className="text-foreground">For Students</span>
+              <span className="text-gray-900">For Electronics</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              CampusCart started as a simple idea in a college dorm room: what if students had a marketplace designed
-              specifically for their needs, budgets, and lifestyle?
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+              We started with a simple goal: provide quality electronics components to makers, hobbyists, and students 
+              at competitive prices with fast delivery across India.
             </p>
           </div>
         </div>

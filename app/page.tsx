@@ -132,10 +132,10 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50" />
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
         <div
-          className="absolute inset-0 opacity-5"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: "radial-gradient(circle at 2px 2px, #2874F0 1px, transparent 0)",
             backgroundSize: "48px 48px",
