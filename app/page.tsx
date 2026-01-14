@@ -246,7 +246,7 @@ export default function HomePage() {
             {trendingProducts.map((product, index) => (
               <Card
                 key={product.id}
-                className={`group relative overflow-hidden bg-white border border-gray-200 hover:border-[#2874F0]/50 cursor-pointer transition-all duration-300 hover:shadow-xl ${
+                className={`group relative overflow-hidden bg-white border-2 border-gray-300 hover:border-[#2874F0] cursor-pointer transition-all duration-300 hover:shadow-2xl ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
@@ -254,19 +254,19 @@ export default function HomePage() {
                 {/* Badges */}
                 <div className="absolute top-3 left-3 z-20 flex flex-col gap-2">
                   {product.discount && (
-                    <Badge className="bg-gradient-to-r from-red-500 to-orange-500 text-white border-0 font-bold">
+                    <Badge className="bg-red-600 text-white border-0 font-bold shadow-lg">
                       {product.discount}% OFF
                     </Badge>
                   )}
                   {product.trending && (
-                    <Badge className="bg-[#2874F0] text-white border-0 font-semibold">
-                      <TrendingUp className="w-3 h-3 mr-1" />
+                    <Badge className="bg-[#2874F0] text-white border-0 font-semibold shadow-lg">
+                      <TrendingUp className="w-3 h-3 mr-1 text-white" />
                       Trending
                     </Badge>
                   )}
                   {product.hot && (
-                    <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0">
-                      <Flame className="w-3 h-3 mr-1" />
+                    <Badge className="bg-orange-600 text-white border-0 shadow-lg">
+                      <Flame className="w-3 h-3 mr-1 text-white" />
                       Hot
                     </Badge>
                   )}
@@ -277,21 +277,21 @@ export default function HomePage() {
                   <Button
                     size="icon"
                     variant="secondary"
-                    className="w-9 h-9 rounded-full bg-background/90 hover:bg-background backdrop-blur-sm hover:scale-110 transition-transform"
+                    className="w-9 h-9 rounded-full bg-white hover:bg-gray-100 shadow-lg hover:scale-110 transition-transform border border-gray-300"
                   >
-                    <Heart className="w-4 h-4" />
+                    <Heart className="w-4 h-4 text-black" />
                   </Button>
                   <Button
                     size="icon"
                     variant="secondary"
-                    className="w-9 h-9 rounded-full bg-background/90 hover:bg-background backdrop-blur-sm hover:scale-110 transition-transform"
+                    className="w-9 h-9 rounded-full bg-white hover:bg-gray-100 shadow-lg hover:scale-110 transition-transform border border-gray-300"
                   >
-                    <Eye className="w-4 h-4" />
+                    <Eye className="w-4 h-4 text-black" />
                   </Button>
                 </div>
 
                 {/* Image */}
-                <div className="relative aspect-square overflow-hidden bg-gray-50">
+                <div className="relative aspect-square overflow-hidden bg-gray-100">
                   <img
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
@@ -300,21 +300,21 @@ export default function HomePage() {
                 </div>
 
                 {/* Content */}
-                <div className="p-4">
-                  <h3 className="font-semibold text-base mb-2 line-clamp-2 text-black group-hover:text-[#2874F0] transition-colors">
+                <div className="p-4 bg-white">
+                  <h3 className="font-bold text-lg mb-2 line-clamp-2 text-black group-hover:text-[#2874F0] transition-colors">
                     {product.name}
                   </h3>
 
-                  <div className="flex items-center gap-1 mb-2">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm font-medium text-black">{product.rating}</span>
-                    <span className="text-xs text-gray-600">({product.reviews})</span>
+                  <div className="flex items-center gap-1 mb-3">
+                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    <span className="text-base font-bold text-black">{product.rating}</span>
+                    <span className="text-sm text-gray-700">({product.reviews} reviews)</span>
                   </div>
 
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl font-bold text-black">₹{product.price.toLocaleString()}</span>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-3xl font-bold text-black">₹{product.price.toLocaleString()}</span>
                     {product.originalPrice && (
-                      <span className="text-sm text-gray-500 line-through">
+                      <span className="text-base text-gray-600 line-through">
                         ₹{product.originalPrice.toLocaleString()}
                       </span>
                     )}
@@ -323,21 +323,21 @@ export default function HomePage() {
                   <div className="flex items-center justify-between">
                     <Button
                       size="sm"
-                      className="flex-1 bg-[#FF9F00] hover:bg-[#FF9F00]/90 text-white font-semibold transition-all"
+                      className="flex-1 bg-[#FF9F00] hover:bg-[#e68f00] text-white font-bold transition-all shadow-md h-10"
                     >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      <ShoppingCart className="w-5 h-5 mr-2 text-white" />
                       Add to Cart
                     </Button>
                   </div>
 
-                  <div className="flex items-center gap-1 mt-3 text-xs text-gray-500">
-                    <Heart className="w-3 h-3" />
+                  <div className="flex items-center gap-1 mt-3 text-sm text-black font-medium">
+                    <Heart className="w-4 h-4 text-red-500" />
                     <span>{product.likes.toLocaleString()} likes</span>
                   </div>
                 </div>
 
                 {/* Shimmer Effect */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-black/5 to-transparent pointer-events-none" />
               </Card>
             ))}
           </div>
