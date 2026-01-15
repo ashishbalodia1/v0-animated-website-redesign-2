@@ -205,6 +205,385 @@ Start with basic remote control and progress to autonomous navigation!`,
     featured: false,
     likes: 167,
   },
+  {
+    id: 6,
+    title: "PCB Design Basics: From Schematic to Board",
+    excerpt: "Learn PCB design fundamentals using EasyEDA and KiCad. Create professional circuit boards for your projects.",
+    fullContent: `Designing your own PCBs takes your projects to the next level!
+
+**Software Options:**
+- **EasyEDA** - Browser-based, beginner-friendly
+- **KiCad** - Free, powerful, professional
+- **Eagle** - Industry standard
+- **Altium** - Professional level
+
+**Design Steps:**
+1. **Schematic Design** - Draw your circuit diagram
+2. **Component Selection** - Choose footprints
+3. **Layout Design** - Place and route components
+4. **Design Rules Check** - Verify errors
+5. **Generate Gerber Files** - For manufacturing
+
+**Best Practices:**
+- Keep traces short and direct
+- Use ground planes
+- Add proper decoupling capacitors
+- Consider trace width for current
+- Label all components clearly
+
+**Manufacturing:**
+- JLCPCB - ₹200 for 5 PCBs
+- PCBWay - Fast delivery
+- OSH Park - High quality
+
+Start with simple 2-layer boards and gradually learn advanced techniques!`,
+    category: "Electronics",
+    author: "Karthik Iyer",
+    date: "Dec 28, 2025",
+    readTime: "14 min read",
+    image: "/image 1.jpg",
+    featured: false,
+    likes: 198,
+  },
+  {
+    id: 7,
+    title: "Soldering Guide for Beginners",
+    excerpt: "Master the art of soldering with proper techniques, tools, and safety tips for electronics assembly.",
+    fullContent: `Soldering is an essential skill for every electronics enthusiast.
+
+**Essential Tools:**
+- Soldering iron (40W recommended)
+- Solder wire (60/40 or 63/37)
+- Soldering stand
+- Helping hands
+- Wire cutters
+- Flux
+
+**Technique:**
+1. Clean the tip with wet sponge
+2. Heat the joint, not the solder
+3. Apply solder to the joint
+4. Remove solder, then iron
+5. Let it cool naturally
+
+**Common Mistakes:**
+- Too much heat - Damages components
+- Too little heat - Cold joints
+- Too much solder - Bridges
+- Moving while cooling - Cracks
+
+**Safety Tips:**
+- Work in ventilated area
+- Use fume extractor
+- Wash hands after soldering
+- Keep iron away from cables
+
+**Practice Projects:**
+- LED circuits
+- Arduino shields
+- Audio amplifiers
+- Through-hole components first
+
+With practice, you'll create professional-looking solder joints!`,
+    category: "Electronics",
+    author: "Neha Gupta",
+    date: "Dec 25, 2025",
+    readTime: "11 min read",
+    image: "/image 2.jpg",
+    featured: false,
+    likes: 223,
+  },
+  {
+    id: 8,
+    title: "Home Automation with Raspberry Pi and MQTT",
+    excerpt: "Build a complete smart home system using Raspberry Pi, MQTT protocol, and Home Assistant.",
+    fullContent: `Create your own smart home without expensive commercial products!
+
+**Components:**
+- Raspberry Pi 4 (4GB)
+- Relay modules
+- ESP8266/ESP32 nodes
+- Sensors (PIR, temperature, door)
+- MQTT broker (Mosquitto)
+
+**System Architecture:**
+1. **Central Hub** - Raspberry Pi with Home Assistant
+2. **MQTT Broker** - Message communication
+3. **Sensor Nodes** - ESP8266 with sensors
+4. **Actuators** - Relays for lights/fans
+5. **Mobile App** - Control interface
+
+**Setup Steps:**
+1. Install Raspbian/Home Assistant OS
+2. Install Mosquitto MQTT broker
+3. Configure Home Assistant
+4. Program ESP nodes
+5. Create automations
+
+**Automation Ideas:**
+- Lights on when motion detected
+- AC control based on temperature
+- Security alerts on phone
+- Energy monitoring
+- Voice control with Alexa
+
+**Cost Breakdown:**
+- Raspberry Pi: ₹5000
+- ESP8266 nodes: ₹300 each
+- Relays: ₹150 each
+- Sensors: ₹50-500 each
+
+Build room by room and expand gradually!`,
+    category: "IoT",
+    author: "Vikram Malhotra",
+    date: "Dec 22, 2025",
+    readTime: "18 min read",
+    image: "/macbook-air-laptop-silver.jpg",
+    featured: false,
+    likes: 289,
+  },
+  {
+    id: 9,
+    title: "Battery Power Management for Portable Projects",
+    excerpt: "Learn to design efficient battery-powered circuits with proper voltage regulation and power management.",
+    fullContent: `Maximize battery life in your portable electronics projects!
+
+**Battery Types:**
+- **Li-ion 18650** - High capacity, rechargeable
+- **LiPo** - Lightweight, various sizes
+- **AA/AAA** - Easy to replace
+- **9V** - Simple for beginners
+- **Power Banks** - USB output
+
+**Voltage Regulation:**
+- **LM7805** - 5V linear regulator
+- **LM317** - Adjustable output
+- **Buck Converter** - Efficient step-down
+- **Boost Converter** - Step-up voltage
+- **TP4056** - Li-ion charging
+
+**Power Saving Techniques:**
+- Use sleep modes on microcontrollers
+- Turn off unused peripherals
+- Reduce clock speed when possible
+- Use low-power sensors
+- Optimize code efficiency
+
+**Capacity Calculation:**
+- Measure current consumption
+- Calculate runtime = Battery capacity / Current
+- Add 20% safety margin
+- Consider voltage drop
+
+**Charging Circuits:**
+- TP4056 for single Li-ion
+- BMS for multiple cells
+- Solar charging options
+- USB-C PD charging
+
+**Safety:**
+- Use protection circuits
+- Monitor battery temperature
+- Don't over-discharge
+- Proper battery storage
+
+Design smart power systems for longer runtime!`,
+    category: "Electronics",
+    author: "Pooja Reddy",
+    date: "Dec 20, 2025",
+    readTime: "13 min read",
+    image: "/ipad-pro-tablet-with-stylus.jpg",
+    featured: false,
+    likes: 176,
+  },
+  {
+    id: 10,
+    title: "3D Printing for Electronics Enclosures",
+    excerpt: "Design and print custom enclosures for your electronics projects using Fusion 360 and 3D printers.",
+    fullContent: `Create professional-looking enclosures for your projects!
+
+**Design Software:**
+- **Fusion 360** - Free for hobbyists
+- **Tinkercad** - Browser-based, easy
+- **FreeCAD** - Open source
+- **OnShape** - Cloud-based
+
+**Design Principles:**
+1. Measure your PCB dimensions
+2. Add 2-3mm clearance
+3. Design mounting posts
+4. Plan cable access
+5. Consider heat dissipation
+
+**Features to Include:**
+- Screw posts for PCB mounting
+- Ventilation holes/slots
+- LED light pipes
+- Button access holes
+- Cable management clips
+- Snap-fit closures
+
+**3D Printing Tips:**
+- Use 0.2mm layer height
+- 20% infill is sufficient
+- Print with supports if needed
+- PLA for most projects
+- PETG for outdoor use
+
+**Post-Processing:**
+- Sand with progressively finer grits
+- Use acetone vapor for ABS
+- Paint with primer + spray paint
+- Add rubber feet
+- Use heat-set inserts for screws
+
+**Popular Designs:**
+- Raspberry Pi cases
+- Arduino project boxes
+- Sensor housings
+- Robotics chassis
+- Wall-mount enclosures
+
+**Cost:**
+- Entry 3D printer: ₹15000+
+- Filament: ₹400/kg
+- Per project: ₹20-100
+
+Design once, print multiple copies easily!`,
+    category: "Projects",
+    author: "Rahul Sharma",
+    date: "Dec 18, 2025",
+    readTime: "16 min read",
+    image: "/airpods-pro-white-wireless-earbuds.jpg",
+    featured: false,
+    likes: 245,
+  },
+  {
+    id: 11,
+    title: "Understanding I2C and SPI Communication",
+    excerpt: "Master serial communication protocols for connecting sensors and modules to your microcontroller projects.",
+    fullContent: `Learn the two most common communication protocols in electronics!
+
+**I2C (Inter-Integrated Circuit):**
+- Uses 2 wires: SDA (data), SCL (clock)
+- Multiple devices on same bus
+- Each device has unique address
+- Speed: 100kHz (standard) to 3.4MHz (high-speed)
+- Max distance: ~1 meter
+
+**Common I2C Devices:**
+- OLED displays
+- RTC modules
+- Accelerometers
+- Temperature sensors
+- EEPROM memory
+
+**I2C Arduino Code:**
+Wire library usage:
+- Include Wire.h library
+- Wire.begin() to start
+- Wire.beginTransmission(address)
+- Wire.write(data)
+- Wire.endTransmission()
+
+**SPI (Serial Peripheral Interface):**
+- Uses 4 wires: MISO, MOSI, SCK, CS/SS
+- Faster than I2C
+- Full-duplex communication
+- Separate CS for each device
+- Speed: Up to 10MHz+
+
+**Common SPI Devices:**
+- SD card modules
+- RF modules (NRF24L01)
+- TFT displays
+- Flash memory
+- DAC/ADC chips
+
+**When to Use What:**
+- I2C: Multiple sensors, short distance
+- SPI: High-speed data, displays
+- UART: Simple point-to-point
+
+**Troubleshooting:**
+- Check pull-up resistors (I2C)
+- Verify correct addresses
+- Use logic analyzer
+- Check wiring and connections
+
+Master these protocols to expand your project possibilities!`,
+    category: "Electronics",
+    author: "Arjun Menon",
+    date: "Dec 15, 2025",
+    readTime: "12 min read",
+    image: "/image 1.jpg",
+    featured: false,
+    likes: 192,
+  },
+  {
+    id: 12,
+    title: "Building Line Following Robot",
+    excerpt: "Complete guide to building an autonomous line-following robot using IR sensors and Arduino.",
+    fullContent: `Build a robot that follows black lines - perfect beginner robotics project!
+
+**Components Required:**
+- Arduino UNO
+- L298N motor driver
+- 2x DC BO motors (300 RPM)
+- IR sensor array (5 sensors)
+- Robot chassis kit
+- 7.4V Li-ion battery
+- Wheels and caster
+
+**Circuit Connection:**
+1. Connect motors to L298N
+2. L298N to Arduino (IN1-IN4)
+3. IR sensors to digital pins
+4. Power everything from battery
+
+**Algorithm:**
+- All sensors on white → Move forward
+- Left sensor on black → Turn left
+- Right sensor on black → Turn right
+- All sensors on black → Stop/Junction
+- Middle sensor on black → Move straight
+
+**PID Control (Advanced):**
+Improve smooth movement with PID:
+- Calculate error from center
+- Adjust motor speeds dynamically
+- Tune Kp, Ki, Kd values
+
+**Code Structure:**
+Main loop:
+- Read sensor values
+- Calculate error
+- Adjust motor speeds
+- Move forward if centered
+
+**Testing:**
+- Start with slow speed
+- Test on black tape/white surface
+- Adjust sensor height (5-10mm)
+- Calibrate sensor thresholds
+- Increase speed gradually
+
+**Competition Tips:**
+- Use PID for smooth turns
+- Optimize gear ratio
+- Reduce weight
+- Use proper tires
+- Practice on actual track
+
+Total cost: ~₹2500 | Build time: 4-6 hours`,
+    category: "Robotics",
+    author: "Sanjay Kumar",
+    date: "Dec 12, 2025",
+    readTime: "20 min read",
+    image: "/image 2.jpg",
+    featured: false,
+    likes: 312,
+  },
 ]
 
 const categories = ["All", "Electronics", "IoT", "Robotics", "Projects", "Comparison"]
@@ -448,20 +827,24 @@ export default function BlogsPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-16 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-background">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <Card className="max-w-2xl mx-auto border-primary/20">
+          <Card className="max-w-2xl mx-auto border-gray-200 shadow-xl bg-white">
             <div className="p-8 text-center">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#2874F0] flex items-center justify-center">
                 <BookOpen className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-              <p className="text-muted-foreground mb-6">
+              <h2 className="text-3xl font-bold mb-4 text-black">Stay Updated</h2>
+              <p className="text-gray-700 mb-6">
                 Get the latest electronics tutorials and project ideas delivered to your inbox
               </p>
               <div className="flex gap-3 max-w-md mx-auto">
-                <Input placeholder="Enter your email" type="email" className="flex-1" />
-                <Button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700">
+                <Input 
+                  placeholder="Enter your email" 
+                  type="email" 
+                  className="flex-1 bg-white border-gray-200 text-black placeholder:text-gray-400" 
+                />
+                <Button className="bg-[#2874F0] hover:bg-[#2366d1] text-white">
                   Subscribe
                 </Button>
               </div>
