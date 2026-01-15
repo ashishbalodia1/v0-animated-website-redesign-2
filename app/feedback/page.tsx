@@ -93,13 +93,13 @@ export default function FeedbackPage() {
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <Card className="group border-border hover:border-primary/30 hover:scale-105 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 h-full">
+                  <Card className="group border-gray-200 hover:border-[#2874F0]/30 hover:scale-105 hover:shadow-xl transition-all duration-300 h-full bg-white">
                     <div className="p-6 text-center">
-                      <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="w-7 h-7 text-primary-foreground" />
+                      <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-7 h-7 text-white" />
                       </div>
-                      <h3 className="font-semibold text-lg mb-2">{method.title}</h3>
-                      <p className="text-sm text-muted-foreground">{method.description}</p>
+                      <h3 className="font-semibold text-base mb-2 text-black">{method.title}</h3>
+                      <p className="text-sm text-gray-700 break-words">{method.description}</p>
                     </div>
                   </Card>
                 </a>

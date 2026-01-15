@@ -33,10 +33,10 @@ export function WishlistButton() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative hover:bg-primary/10 transition-all hover:scale-110">
+        <Button variant="ghost" size="icon" className="relative hover:bg-blue-50 transition-all hover:scale-110 text-black">
           <Heart className="h-5 w-5" />
           {wishlistCount > 0 && (
-            <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-gradient-to-r from-pink-500 to-red-500 text-[10px] font-bold border-0">
+            <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-pink-500 text-white text-[10px] font-bold border-0">
               {wishlistCount}
             </Badge>
           )}

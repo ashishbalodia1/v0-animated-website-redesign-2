@@ -37,35 +37,34 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-card border-t border-border mt-20">
+    <footer className="bg-white border-t border-gray-200 mt-20">
       <div className="container mx-auto px-4 py-12 md:py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg">
-                <ShoppingBag className="w-5 h-5 text-primary-foreground" />
+              <div className="w-10 h-10 bg-[#2874F0] rounded-lg flex items-center justify-center shadow-lg">
+                <ShoppingBag className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                CampusCart
+              <span className="text-xl font-bold text-[#2874F0]">
+                ElectronicsHub
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground mb-4 max-w-xs">
-              Your trusted campus marketplace. Exclusive student discounts, EMI options, and fast delivery on all your
-              favorite products.
+            <p className="text-sm text-gray-700 mb-4 max-w-xs">
+              Your trusted electronics components store. Quality products, competitive prices, and fast delivery across India.
             </p>
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Mail className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-sm text-gray-700">
+                <Mail className="w-4 h-4 text-[#2874F0]" />
                 <span>Helpingengineers24@gmail.com</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Phone className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-sm text-gray-700">
+                <Phone className="w-4 h-4 text-[#2874F0]" />
                 <span>+91 7470578495</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-sm text-gray-700">
+                <MapPin className="w-4 h-4 text-[#2874F0]" />
                 <span>Campus Plaza, University Ave</span>
               </div>
             </div>
@@ -74,13 +73,13 @@ export function Footer() {
           {/* Links Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="font-semibold text-foreground mb-4">{category}</h3>
+              <h3 className="font-semibold text-black mb-4">{category}</h3>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      className="text-sm text-gray-700 hover:text-[#2874F0] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -92,9 +91,9 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2026 CampusCart. All rights reserved. Built for students, by students.
+        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-gray-700">
+            © 2026 ElectronicsHub. All rights reserved. Built for makers and hobbyists.
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (

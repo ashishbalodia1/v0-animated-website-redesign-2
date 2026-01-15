@@ -112,11 +112,11 @@ export default function AboutPage() {
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                    <Icon className="w-7 h-7 text-primary-foreground" />
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#2874F0] flex items-center justify-center">
+                    <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-3xl md:text-4xl font-bold text-[#2874F0] mb-2">{stat.value}</div>
+                  <div className="text-sm text-black font-medium">{stat.label}</div>
                 </div>
               )
             })}

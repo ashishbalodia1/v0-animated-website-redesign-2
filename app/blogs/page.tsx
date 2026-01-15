@@ -239,11 +239,11 @@ export default function BlogsPage() {
             
             {/* Search Bar */}
             <div className="relative max-w-xl mx-auto">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Search articles..."
-                className="pl-12 pr-4 h-12 text-base"
+                className="pl-12 pr-4 h-12 text-base border-2 border-gray-200 bg-white focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0]"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

@@ -24,10 +24,10 @@ export function CartButton() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative hover:bg-primary/10 transition-all hover:scale-110">
+        <Button variant="ghost" size="icon" className="relative hover:bg-blue-50 transition-all hover:scale-110 text-black">
           <ShoppingCart className="h-5 w-5" />
           {cartCount > 0 && (
-            <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-gradient-to-r from-blue-500 to-blue-600 text-[10px] font-bold border-0 animate-pulse">
+            <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-[#2874F0] text-white text-[10px] font-bold border-0">
               {cartCount}
             </Badge>
           )}
