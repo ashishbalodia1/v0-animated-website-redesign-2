@@ -110,37 +110,37 @@ export default function FeedbackPage() {
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Feedback Form */}
-            <Card className="border-border shadow-xl">
+            <Card className="border-gray-200 shadow-xl bg-white">
               <div className="p-8">
                 <div className="mb-6">
-                  <h2 className="text-2xl font-bold mb-2">Send Us a Message</h2>
-                  <p className="text-muted-foreground">Fill out the form below and we'll get back to you shortly.</p>
+                  <h2 className="text-2xl font-bold mb-2 text-black">Send Us a Message</h2>
+                  <p className="text-gray-700">Fill out the form below and we'll get back to you shortly.</p>
                 </div>
 
                 <form className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" type="text" placeholder="John" className="h-11" />
+                      <Label htmlFor="firstName" className="text-black">First Name</Label>
+                      <Input id="firstName" type="text" placeholder="John" className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" type="text" placeholder="Doe" className="h-11" />
+                      <Label htmlFor="lastName" className="text-black">Last Name</Label>
+                      <Input id="lastName" type="text" placeholder="Doe" className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="student@university.edu" className="h-11" />
+                    <Label htmlFor="email" className="text-black">Email Address</Label>
+                    <Input id="email" type="email" placeholder="maker@email.com" className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="category">Category</Label>
+                    <Label htmlFor="category" className="text-black">Category</Label>
                     <select
                       id="category"
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="w-full h-11 px-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full h-11 px-3 rounded-lg border border-gray-200 bg-white text-black focus:outline-none focus:ring-2 focus:ring-[#2874F0]"
                     >
                       {feedbackCategories.map((category) => (
                         <option key={category} value={category}>
@@ -156,11 +156,11 @@ export default function FeedbackPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className="text-black">Message</Label>
                     <Textarea
                       id="message"
                       placeholder="Tell us more about your inquiry..."
-                      className="min-h-32 resize-none"
+                      className="min-h-[120px] resize-none bg-white border-gray-200 text-black placeholder:text-gray-400"
                     />
                   </div>
 

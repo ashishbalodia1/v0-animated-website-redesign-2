@@ -74,44 +74,44 @@ export default function RegisterPage() {
 
             <form className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name</Label>
+                <Label htmlFor="fullName" className="text-black">Full Name</Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                  <Input id="fullName" type="text" placeholder="John Doe" className="pl-11 h-11" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input id="fullName" type="text" placeholder="John Doe" className="pl-11 h-11 bg-white text-black placeholder:text-gray-400 border-gray-300" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Student Email</Label>
+                <Label htmlFor="email" className="text-black">Email Address</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                  <Input id="email" type="email" placeholder="student@university.edu" className="pl-11 h-11" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input id="email" type="email" placeholder="your@email.com" className="pl-11 h-11 bg-white text-black placeholder:text-gray-400 border-gray-300" />
                 </div>
-                <p className="text-xs text-muted-foreground">Use your .edu email for verification</p>
+                <p className="text-xs text-gray-600">We'll send order updates to this email</p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="college">College/University</Label>
+                <Label htmlFor="phone" className="text-black">Phone Number</Label>
                 <div className="relative">
-                  <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                  <Input id="college" type="text" placeholder="Your College Name" className="pl-11 h-11" />
+                  <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input id="phone" type="tel" placeholder="9876543210" className="pl-11 h-11 bg-white text-black placeholder:text-gray-400 border-gray-300" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-black">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Create a strong password"
-                    className="pl-11 pr-11 h-11"
+                    className="pl-11 pr-11 h-11 bg-white text-black placeholder:text-gray-400 border-gray-300"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -119,19 +119,19 @@ export default function RegisterPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="text-black">Confirm Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Re-enter your password"
-                    className="pl-11 pr-11 h-11"
+                    className="pl-11 pr-11 h-11 bg-white text-black placeholder:text-gray-400 border-gray-300"
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
                   >
                     {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>

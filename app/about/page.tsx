@@ -172,13 +172,13 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Our <span className="text-primary">Values</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
+              Our <span className="text-[#2874F0]">Values</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-gray-700 text-lg max-w-2xl mx-auto">
               The principles that guide everything we do
             </p>
           </div>

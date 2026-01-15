@@ -192,7 +192,7 @@ export default function HomePage() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <Input
                 placeholder="Search for Arduino, sensors, modules..."
-                className="pl-12 h-14 bg-white border-2 border-gray-200 shadow-lg focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0]"
+                className="pl-12 h-14 bg-white border-2 border-gray-200 shadow-lg focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0] text-black placeholder:text-gray-400"
               />
             </div>
           </div>
@@ -323,6 +323,10 @@ export default function HomePage() {
                   <div className="flex items-center justify-between">
                     <Button
                       size="sm"
+                      onClick={() => {
+                        // Simple alert for demo - you can integrate with cart context later
+                        alert(`${product.name} added to cart!`)
+                      }}
                       className="flex-1 bg-[#FF9F00] hover:bg-[#FF9F00]/90 text-white font-semibold transition-all"
                     >
                       <ShoppingCart className="w-4 h-4 mr-2" />

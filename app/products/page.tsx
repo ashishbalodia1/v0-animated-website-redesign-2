@@ -109,7 +109,7 @@ export default function ProductsPage() {
               <Input
                 type="text"
                 placeholder="Search for Arduino, sensors, motors, displays..."
-                className="pl-12 pr-4 h-12 text-base border-2 border-gray-200 focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0]"
+                className="pl-12 pr-4 h-12 text-base border-2 border-gray-200 focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0] text-black placeholder:text-gray-400 bg-white"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

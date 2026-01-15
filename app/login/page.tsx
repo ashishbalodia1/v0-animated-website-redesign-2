@@ -31,7 +31,7 @@ export default function LoginPage() {
                 <Label htmlFor="email" className="text-gray-900">Email Address</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <Input id="email" type="email" placeholder="your@email.com" className="pl-11 h-11 border-gray-300" />
+                  <Input id="email" type="email" placeholder="your@email.com" className="pl-11 h-11 border-gray-300 bg-white text-black placeholder:text-gray-400" />
                 </div>
               </div>
 
@@ -48,7 +48,7 @@ export default function LoginPage() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
-                    className="pl-11 pr-11 h-11 border-gray-300"
+                    className="pl-11 pr-11 h-11 border-gray-300 bg-white text-black placeholder:text-gray-400"
                   />
                   <button
                     type="button"
