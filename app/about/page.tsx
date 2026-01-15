@@ -99,7 +99,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
@@ -135,18 +135,18 @@ export default function AboutPage() {
                 }`}
               >
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Our <span className="text-primary">Mission</span>
+                  Our <span className="text-[#2874F0]">Mission</span>
                 </h2>
-                <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   We believe every student deserves access to quality products at prices they can afford. Our mission is
                   to make campus shopping easier, more affordable, and more convenient than ever before.
                 </p>
-                <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+                <p className="text-gray-700 text-lg leading-relaxed mb-8">
                   From textbooks to tech, dorm essentials to daily necessities, we're here to support students
                   throughout their entire college journey with exclusive discounts, flexible payment options, and
                   lightning-fast delivery.
                 </p>
-                <Button asChild className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
+                <Button asChild className="bg-[#2874F0] hover:bg-[#2366d1] text-white">
                   <Link href="/services">
                     Explore Our Services
                     <ChevronRight className="ml-2 w-4 h-4" />
@@ -158,7 +158,7 @@ export default function AboutPage() {
                   isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
                 }`}
               >
-                <Card className="overflow-hidden border-border shadow-xl">
+                <Card className="overflow-hidden border-gray-200 shadow-xl bg-white">
                   <img
                     src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop"
                     alt="Students collaborating"
@@ -189,17 +189,17 @@ export default function AboutPage() {
               return (
                 <Card
                   key={index}
-                  className={`group border-border hover:border-primary/30 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-primary/10 ${
+                  className={`group border-gray-200 hover:border-[#2874F0]/30 transition-all duration-500 hover:scale-105 hover:shadow-xl bg-white ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <div className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                      <Icon className="w-8 h-8 text-primary-foreground" />
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                      <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">{value.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
+                    <h3 className="font-semibold text-lg mb-2 text-black">{value.title}</h3>
+                    <p className="text-sm text-gray-700 leading-relaxed">{value.description}</p>
                   </div>
                 </Card>
               )
@@ -212,33 +212,33 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Meet Our <span className="text-primary">Team</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
+              Meet Our <span className="text-[#2874F0]">Team</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">The passionate students behind CampusCart</p>
+            <p className="text-gray-700 text-lg max-w-2xl mx-auto">The passionate students behind ElectronicsHub</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
               <Card
                 key={index}
-                className={`group overflow-hidden border-border hover:border-primary/30 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-primary/10 ${
+                className={`group overflow-hidden border-gray-200 hover:border-[#2874F0]/30 transition-all duration-500 hover:scale-105 hover:shadow-xl bg-white ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="relative h-64 overflow-hidden bg-muted">
+                <div className="relative h-64 overflow-hidden bg-gray-100">
                   <img
                     src={member.image || "/placeholder.svg"}
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent opacity-60" />
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="font-semibold text-lg mb-1">{member.name}</h3>
-                  <p className="text-sm text-primary mb-3">{member.role}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{member.bio}</p>
+                  <h3 className="font-semibold text-lg mb-1 text-black">{member.name}</h3>
+                  <p className="text-sm text-[#2874F0] mb-3">{member.role}</p>
+                  <p className="text-sm text-gray-700 leading-relaxed">{member.bio}</p>
                 </div>
               </Card>
             ))}
@@ -247,24 +247,24 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 via-accent/5 to-background">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <Card className="border-primary/20 shadow-2xl max-w-4xl mx-auto">
+          <Card className="border-gray-200 shadow-2xl max-w-4xl mx-auto bg-white">
             <div className="p-12 md:p-16 text-center">
-              <Zap className="w-16 h-16 mx-auto mb-6 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Our Growing Community</h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-                Be part of the student marketplace revolution. Start saving money and shopping smarter today.
+              <Zap className="w-16 h-16 mx-auto mb-6 text-[#2874F0]" />
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">Join Our Growing Community</h2>
+              <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Be part of the electronics revolution. Start building your projects with quality components today.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
                   size="lg"
                   asChild
-                  className="bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg h-12 px-8"
+                  className="bg-[#2874F0] text-white hover:bg-[#2366d1] h-12 px-8"
                 >
                   <Link href="/register">Get Started</Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild className="border-border bg-transparent h-12 px-8">
+                <Button size="lg" variant="outline" asChild className="border-gray-300 bg-transparent h-12 px-8 text-black hover:bg-gray-100">
                   <Link href="/feedback">Contact Us</Link>
                 </Button>
               </div>

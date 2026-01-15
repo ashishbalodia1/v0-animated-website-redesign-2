@@ -151,8 +151,8 @@ export default function FeedbackPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input id="subject" type="text" placeholder="How can we help you?" className="h-11" />
+                    <Label htmlFor="subject" className="text-black">Subject</Label>
+                    <Input id="subject" type="text" placeholder="How can we help you?" className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" />
                   </div>
 
                   <div className="space-y-2">
@@ -167,7 +167,7 @@ export default function FeedbackPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full h-12 bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg hover:shadow-primary/50 transition-all"
+                    className="w-full h-12 bg-[#2874F0] hover:bg-[#2366d1] text-white transition-all"
                   >
                     <Send className="w-4 h-4 mr-2" />
                     Send Message
@@ -179,15 +179,15 @@ export default function FeedbackPage() {
             {/* Info Sidebar */}
             <div className="space-y-6">
               {/* FAQ Section */}
-              <Card className="border-border shadow-lg">
+              <Card className="border-gray-200 shadow-lg bg-white">
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                      <HeadphonesIcon className="w-6 h-6 text-primary-foreground" />
+                    <div className="w-12 h-12 rounded-xl bg-[#2874F0] flex items-center justify-center">
+                      <HeadphonesIcon className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">Quick Support</h3>
-                      <p className="text-sm text-muted-foreground">Common questions answered</p>
+                      <h3 className="font-semibold text-lg text-black">Quick Support</h3>
+                      <p className="text-sm text-gray-700">Common questions answered</p>
                     </div>
                   </div>
 
@@ -208,10 +208,10 @@ export default function FeedbackPage() {
                     ].map((faq, index) => (
                       <div
                         key={index}
-                        className="p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors cursor-pointer"
+                        className="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer"
                       >
-                        <h4 className="font-medium text-sm mb-1">{faq.question}</h4>
-                        <p className="text-xs text-muted-foreground">{faq.answer}</p>
+                        <h4 className="font-medium text-sm mb-1 text-black">{faq.question}</h4>
+                        <p className="text-xs text-gray-700">{faq.answer}</p>
                       </div>
                     ))}
                   </div>
@@ -219,31 +219,31 @@ export default function FeedbackPage() {
               </Card>
 
               {/* Response Time Card */}
-              <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
+              <Card className="border-gray-200 bg-gradient-to-br from-blue-50 to-purple-50">
                 <div className="p-8 text-center">
-                  <CheckCircle2 className="w-12 h-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold text-lg mb-2">Fast Response Time</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <CheckCircle2 className="w-12 h-12 mx-auto mb-4 text-[#2874F0]" />
+                  <h3 className="font-semibold text-lg mb-2 text-black">Fast Response Time</h3>
+                  <p className="text-sm text-gray-700 mb-4">
                     We typically respond to all inquiries within 2-4 hours during business hours.
                   </p>
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge className="text-xs bg-[#2874F0] text-white border-0">
                     Average response: 2 hours
                   </Badge>
                 </div>
               </Card>
 
               {/* Location Map Card */}
-              <Card className="border-border shadow-lg overflow-hidden">
-                <div className="h-48 bg-muted relative">
+              <Card className="border-gray-200 shadow-lg overflow-hidden bg-white">
+                <div className="h-48 bg-gray-100 relative">
                   <img
                     src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop"
                     alt="Campus location"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end">
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent flex items-end">
                     <div className="p-4">
-                      <p className="text-sm font-medium text-foreground">Campus Plaza</p>
-                      <p className="text-xs text-muted-foreground">University Avenue, Main Campus</p>
+                      <p className="text-sm font-medium text-black">Campus Plaza</p>
+                      <p className="text-xs text-gray-700">University Avenue, Main Campus</p>
                     </div>
                   </div>
                 </div>
