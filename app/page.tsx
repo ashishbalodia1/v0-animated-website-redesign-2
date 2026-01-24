@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import Image from "next/image"
 import {
   Sparkles,
   Zap,
@@ -27,6 +28,15 @@ import {
   Flame,
   Eye,
 } from "lucide-react"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
 
 const categories = [
   { name: "Microcontrollers", icon: Laptop, color: "from-blue-600 to-blue-700", href: "/products" },
@@ -35,6 +45,49 @@ const categories = [
   { name: "Displays", icon: Eye, color: "from-green-600 to-green-700", href: "/products" },
   { name: "Power Supply", icon: Zap, color: "from-yellow-600 to-yellow-700", href: "/products" },
   { name: "Communication", icon: Smartphone, color: "from-indigo-600 to-indigo-700", href: "/products" },
+]
+
+const heroSlides = [
+  {
+    id: 1,
+    title: "Arduino & ESP32 Boards",
+    subtitle: "Starting from ₹699",
+    description: "Get started with microcontrollers - Perfect for beginners",
+    image: "/1. Microcontrollers & Development Boards/Arduino UNO.png",
+    bgGradient: "from-blue-600 to-blue-800",
+    buttonText: "Shop Now",
+    discount: "Up to 30% OFF",
+  },
+  {
+    id: 2,
+    title: "Sensors & Modules",
+    subtitle: "Starting from ₹49",
+    description: "Temperature, Humidity, Motion & More",
+    image: "/2. Sensors/DHT22.png",
+    bgGradient: "from-purple-600 to-purple-800",
+    buttonText: "Explore",
+    discount: "Up to 40% OFF",
+  },
+  {
+    id: 3,
+    title: "Motor Drivers & Control",
+    subtitle: "Starting from ₹249",
+    description: "Build robots and automation projects",
+    image: "/3. Motor Drivers, wheels & Power Control/L298N Motor Driver.jpg",
+    bgGradient: "from-orange-600 to-orange-800",
+    buttonText: "Buy Now",
+    discount: "Up to 25% OFF",
+  },
+  {
+    id: 4,
+    title: "Displays & Screens",
+    subtitle: "Starting from ₹199",
+    description: "OLED, LCD, TFT - All types available",
+    image: "/7. Display Modules/OLED 0.96 inch.png",
+    bgGradient: "from-green-600 to-green-800",
+    buttonText: "Shop Now",
+    discount: "Up to 35% OFF",
+  },
 ]
 
 const trendingProducts = [
@@ -121,6 +174,8 @@ const stats = [
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
 
   useEffect(() => {
     setIsVisible(true)
@@ -129,72 +184,118 @@ export default function HomePage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCurrent(api.selectedScrollSnap())
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: "radial-gradient(circle at 2px 2px, #2874F0 1px, transparent 0)",
-            backgroundSize: "48px 48px",
-            transform: `translateY(${scrollY * 0.3}px)`,
-          }}
-        />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div
-            className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+      {/* Hero Slideshow - Flipkart Style */}
+      <section className="pt-20 bg-white">
+        <div className="container mx-auto px-4">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 4000,
+              }),
+            ]}
+            setApi={setApi}
+            className="w-full"
           >
-            <Badge className="mb-6 px-4 py-2 bg-[#2874F0] text-white border-0 hover:bg-[#2874F0]/90 transition-all shadow-lg">
-              <Sparkles className="w-3.5 h-3.5 mr-1.5" />
-              Electronics Components Store
-            </Badge>
+            <CarouselContent>
+              {heroSlides.map((slide) => (
+                <CarouselItem key={slide.id}>
+                  <div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden group">
+                    <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient}`} />
+                    
+                    <div className="relative h-full flex items-center">
+                      <div className="container mx-auto px-8 md:px-12 grid md:grid-cols-2 gap-8 items-center">
+                        {/* Left Content */}
+                        <div className="text-white space-y-4 z-10">
+                          <Badge className="bg-yellow-400 text-black border-0 px-3 py-1 font-bold">
+                            {slide.discount}
+                          </Badge>
+                          <h2 className="text-4xl md:text-6xl font-bold leading-tight">
+                            {slide.title}
+                          </h2>
+                          <p className="text-xl md:text-2xl font-semibold text-blue-100">
+                            {slide.subtitle}
+                          </p>
+                          <p className="text-lg text-blue-50">
+                            {slide.description}
+                          </p>
+                          <Button
+                            size="lg"
+                            asChild
+                            className="bg-white text-[#2874F0] hover:bg-gray-100 font-bold text-lg px-8 h-14 mt-4"
+                          >
+                            <Link href="/products">{slide.buttonText}</Link>
+                          </Button>
+                        </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight">
-              <span className="text-black">Your Complete</span>
-              <br />
-              <span className="text-[#2874F0]">
-                Electronics Hub
-              </span>
-            </h1>
-
-            <p className="text-lg md:text-xl text-black mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
-              Arduino, Raspberry Pi, Sensors, and everything you need for your electronics projects. 
-              Quality components at great prices.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <Button
-                size="lg"
-                asChild
-                className="w-full sm:w-auto bg-[#2874F0] text-white hover:bg-[#2366d1] hover:shadow-xl transition-all duration-300 group h-12 px-8 font-semibold"
-              >
-                <Link href="/products">
-                  Shop Now
-                  <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="w-full sm:w-auto border-2 border-[#2874F0] text-[#2874F0] hover:bg-blue-50 h-12 px-8 font-semibold"
-              >
-                <Link href="/blogs">Read Blogs</Link>
-              </Button>
+                        {/* Right Image */}
+                        <div className="relative h-64 md:h-80 hidden md:block">
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="relative w-full h-full transform transition-transform group-hover:scale-105 duration-500">
+                              <Image
+                                src={slide.image}
+                                alt={slide.title}
+                                fill
+                                className="object-contain drop-shadow-2xl"
+                                priority
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4 bg-white/90 hover:bg-white border-0 shadow-lg" />
+            <CarouselNext className="right-4 bg-white/90 hover:bg-white border-0 shadow-lg" />
+            
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-4">
+              {heroSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => api?.scrollTo(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === current
+                      ? "w-8 bg-[#2874F0]"
+                      : "w-2 bg-gray-300 hover:bg-gray-400"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
+          </Carousel>
+        </div>
+      </section>
 
-            <div className="relative max-w-xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <Input
-                placeholder="Search for Arduino, sensors, modules..."
-                className="pl-12 h-14 bg-white border-2 border-gray-200 shadow-lg focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0] text-black placeholder:text-gray-400"
-              />
-            </div>
+      {/* Search Bar Section */}
+      <section className="py-8 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="relative max-w-2xl mx-auto">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Input
+              placeholder="Search for Arduino, sensors, modules..."
+              className="pl-12 h-14 bg-white border-2 border-gray-200 shadow-lg focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0] text-black placeholder:text-gray-400"
+            />
           </div>
         </div>
       </section>
