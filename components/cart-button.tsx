@@ -34,13 +34,13 @@ export function CartButton() {
           <span className="sr-only">Shopping cart</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-lg">
+      <SheetContent className="w-full sm:max-w-lg bg-white">
         <SheetHeader>
-          <SheetTitle className="text-2xl font-bold flex items-center gap-2">
-            <ShoppingCart className="h-6 w-6" />
+          <SheetTitle className="text-2xl font-bold flex items-center gap-2 text-black">
+            <ShoppingCart className="h-6 w-6 text-[#2874F0]" />
             Shopping Cart
           </SheetTitle>
-          <SheetDescription>
+          <SheetDescription className="text-gray-700">
             {cartCount === 0 ? "Your cart is empty" : `${cartCount} item${cartCount === 1 ? '' : 's'} in your cart`}
           </SheetDescription>
         </SheetHeader>
@@ -48,14 +48,14 @@ export function CartButton() {
         <div className="mt-8 flex flex-col gap-4 max-h-[calc(100vh-250px)] overflow-y-auto pr-2">
           {cart.length === 0 ? (
             <div className="text-center py-12">
-              <ShoppingCart className="h-16 w-16 mx-auto text-muted-foreground opacity-50 mb-4" />
-              <p className="text-muted-foreground">No items in cart yet</p>
-              <p className="text-sm text-muted-foreground mt-2">Add some products to get started!</p>
+              <ShoppingCart className="h-16 w-16 mx-auto text-gray-400 opacity-50 mb-4" />
+              <p className="text-gray-600">No items in cart yet</p>
+              <p className="text-sm text-gray-500 mt-2">Add some products to get started!</p>
             </div>
           ) : (
             cart.map((item) => (
-              <div key={item.name} className="flex gap-4 border-b pb-4">
-                <div className="relative w-20 h-20 bg-muted rounded-lg overflow-hidden flex-shrink-0">
+              <div key={item.name} className="flex gap-4 border-b border-gray-200 pb-4">
+                <div className="relative w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                   <Image
                     src={`/${item.folder}/${item.image}`}
                     alt={item.name}
@@ -64,25 +64,25 @@ export function CartButton() {
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-sm line-clamp-2">{item.name}</h4>
-                  <p className="text-xs text-muted-foreground mt-1">{item.category}</p>
+                  <h4 className="font-semibold text-sm line-clamp-2 text-black">{item.name}</h4>
+                  <p className="text-xs text-gray-600 mt-1">{item.category}</p>
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-lg font-bold text-primary">₹{item.price}</span>
+                    <span className="text-lg font-bold text-[#2874F0]">₹{item.price}</span>
                   </div>
                   <div className="flex items-center gap-2 mt-2">
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-7 w-7"
+                      className="h-7 w-7 border-gray-300 text-black hover:bg-gray-100"
                       onClick={() => updateQuantity(item.name, Math.max(1, item.quantity - 1))}
                     >
                       <Minus className="h-3 w-3" />
                     </Button>
-                    <span className="w-8 text-center font-semibold">{item.quantity}</span>
+                    <span className="w-8 text-center font-semibold text-black">{item.quantity}</span>
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-7 w-7"
+                      className="h-7 w-7 border-gray-300 text-black hover:bg-gray-100"
                       onClick={() => updateQuantity(item.name, item.quantity + 1)}
                     >
                       <Plus className="h-3 w-3" />
@@ -90,7 +90,7 @@ export function CartButton() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-7 w-7 ml-auto text-destructive hover:text-destructive"
+                      className="h-7 w-7 ml-auto text-red-600 hover:text-red-700 hover:bg-red-50"
                       onClick={() => removeFromCart(item.name)}
                     >
                       <Trash2 className="h-4 w-4" />
@@ -103,13 +103,13 @@ export function CartButton() {
         </div>
 
         {cart.length > 0 && (
-          <SheetFooter className="absolute bottom-0 left-0 right-0 p-6 border-t bg-background">
+          <SheetFooter className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-white">
             <div className="w-full space-y-4">
               <div className="flex justify-between items-center text-lg font-bold">
-                <span>Total:</span>
-                <span className="text-2xl text-primary">₹{cartTotal.toFixed(2)}</span>
+                <span className="text-black">Total:</span>
+                <span className="text-2xl text-[#2874F0]">₹{cartTotal.toFixed(2)}</span>
               </div>
-              <Button className="w-full h-12 text-base font-semibold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700">
+              <Button className="w-full h-12 text-base font-semibold bg-[#2874F0] hover:bg-[#2366d1] text-white">
                 Proceed to Checkout
               </Button>
             </div>

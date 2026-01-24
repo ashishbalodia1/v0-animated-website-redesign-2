@@ -52,21 +52,21 @@ export function NotificationsButton() {
           <span className="sr-only">Notifications</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-80">
-        <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+      <DropdownMenuContent align="end" className="w-80 bg-white border-gray-200">
+        <DropdownMenuLabel className="text-black font-bold text-base">Notifications</DropdownMenuLabel>
+        <DropdownMenuSeparator className="bg-gray-200" />
         {notifications.map((notification) => (
-          <DropdownMenuItem key={notification.id} className="flex flex-col items-start p-4 cursor-pointer">
+          <DropdownMenuItem key={notification.id} className="flex flex-col items-start p-4 cursor-pointer hover:bg-gray-50 focus:bg-gray-50">
             <div className="flex items-start justify-between w-full mb-1">
-              <span className="font-semibold text-sm">{notification.title}</span>
-              <span className="text-xs text-muted-foreground">{notification.time}</span>
+              <span className="font-semibold text-sm text-black">{notification.title}</span>
+              <span className="text-xs text-gray-500">{notification.time}</span>
             </div>
-            <p className="text-sm text-muted-foreground">{notification.description}</p>
-            {notification.unread && <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>}
+            <p className="text-sm text-gray-700">{notification.description}</p>
+            {notification.unread && <div className="w-2 h-2 bg-[#2874F0] rounded-full mt-2"></div>}
           </DropdownMenuItem>
         ))}
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-center text-primary cursor-pointer">View all notifications</DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-gray-200" />
+        <DropdownMenuItem className="text-center text-[#2874F0] cursor-pointer hover:bg-gray-50 focus:bg-gray-50 font-semibold">View all notifications</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
