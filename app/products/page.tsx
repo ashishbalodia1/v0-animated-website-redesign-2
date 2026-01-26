@@ -273,9 +273,9 @@ export default function ProductsPage() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {sortedProducts.map((product, idx) => (
-                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden border-0 shadow-md">
                     <CardHeader className="p-0 relative">
-                      <div className="relative aspect-square bg-gradient-to-br from-background to-muted/20 overflow-hidden product-image-container">
+                      <div className="relative aspect-square bg-white overflow-hidden product-image-container">
                         <Image
                           src={`/${product.folder}/${product.image}`}
                           alt={product.name}

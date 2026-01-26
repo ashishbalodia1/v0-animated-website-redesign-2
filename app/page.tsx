@@ -241,7 +241,7 @@ export default function HomePage() {
                         {/* Right Image */}
                         <div className="relative h-64 md:h-80 hidden md:block">
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="relative w-full h-full transform transition-transform group-hover:scale-105 duration-500">
+                            <div className="relative w-full h-full transform transition-transform group-hover:scale-105 duration-500 slideshow-image-container">
                               <Image
                                 src={slide.image}
                                 alt={slide.title}
