@@ -84,7 +84,7 @@ export default function FeedbackPage() {
     try {
       const fullName = `${formData.firstName} ${formData.lastName}`.trim()
       
-      // Save query to website (localStorage)
+      // Save query to website (localStorage) - This always works
       const newQuery = addQuery({
         name: fullName,
         email: formData.email,
@@ -94,15 +94,27 @@ export default function FeedbackPage() {
         message: formData.message,
       })
 
-      // Send notification email to admin (just for alert)
-      await sendQueryNotification({
-        name: fullName,
-        email: formData.email,
-        phone: formData.phone,
-        category: selectedCategory,
-        message: `Subject: ${formData.subject}\n\n${formData.message}`,
-      })
+      // Try to send notification email to admin (optional, don't fail if it doesn't work)
+      try {
+        const emailResult = await sendQueryNotification({
+          name: fullName,
+          email: formData.email,
+          phone: formData.phone,
+          category: selectedCategory,
+          message: `Subject: ${formData.subject}\n\n${formData.message}`,
+        })
+        
+        if (emailResult.success) {
+          console.log("✅ Admin notification email sent successfully")
+        } else {
+          console.log("⚠️ Email notification failed, but query saved:", emailResult.message)
+        }
+      } catch (emailError) {
+        // Email failed, but that's OK - query is still saved
+        console.log("⚠️ Email notification error (query still saved):", emailError)
+      }
       
+      // Always show success since query is saved
       toast({
         title: "✅ Question Posted Successfully!",
         description: "Your question is now visible. We'll answer it soon on the website.",
