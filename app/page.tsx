@@ -271,14 +271,14 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-12">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg">
+                <div className="p-2 bg-gradient-to-br from-[#FF9900] to-[#FF6B00] rounded-lg shadow-md">
                   <Flame className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-3xl md:text-5xl font-bold">
-                  <span className="text-black">Trending</span> <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">Now</span>
+                  <span className="text-gray-900">Trending</span> <span className="text-[#2874F0]">Now</span>
                 </h2>
               </div>
-              <p className="text-gray-800 text-lg font-medium">Most popular products this week</p>
+              <p className="text-gray-600 text-lg font-medium">Most popular products this week</p>
             </div>
             <Button variant="ghost" asChild className="hidden md:flex">
               <Link href="/services">
@@ -347,18 +347,18 @@ export default function HomePage() {
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="font-semibold text-base mb-2 line-clamp-2 text-black group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-base mb-2 line-clamp-2 text-gray-900 group-hover:text-[#2874F0] transition-colors">
                     {product.name}
                   </h3>
 
                   <div className="flex items-center gap-1 mb-2">
                     <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm font-medium text-black">{product.rating}</span>
-                    <span className="text-xs text-gray-600">({product.reviews})</span>
+                    <span className="text-sm font-medium text-gray-900">{product.rating}</span>
+                    <span className="text-xs text-gray-500">({product.reviews})</span>
                   </div>
 
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl font-bold text-black">₹{product.price.toLocaleString()}</span>
+                    <span className="text-2xl font-bold text-gray-900">₹{product.price.toLocaleString()}</span>
                     {product.originalPrice && (
                       <span className="text-sm text-gray-500 line-through">
                         ₹{product.originalPrice.toLocaleString()}
@@ -402,10 +402,10 @@ export default function HomePage() {
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
-              Shop by <span className="bg-gradient-to-r from-[#2874F0] to-purple-600 bg-clip-text text-transparent">Category</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
+              Shop by <span className="text-[#2874F0]">Category</span>
             </h2>
-            <p className="text-gray-800 text-lg font-medium">Find exactly what you need for your projects</p>
+            <p className="text-gray-600 text-lg font-medium">Find exactly what you need for your projects</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -425,7 +425,7 @@ export default function HomePage() {
                       >
                         <Icon className="w-8 h-8 text-white" />
                       </div>
-                      <h3 className="font-semibold text-sm text-black group-hover:text-primary transition-colors">{category.name}</h3>
+                      <h3 className="font-semibold text-sm text-gray-800 group-hover:text-[#2874F0] transition-colors">{category.name}</h3>
                     </div>
                   </Card>
                 </Link>
@@ -439,10 +439,10 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
-              Why Shop <span className="bg-gradient-to-r from-[#2874F0] to-purple-600 bg-clip-text text-transparent">With Us</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
+              Why Shop <span className="text-[#2874F0]">With Us</span>
             </h2>
-            <p className="text-gray-800 text-lg font-medium">Quality components, great prices, fast delivery</p>
+            <p className="text-gray-600 text-lg font-medium">Quality components, great prices, fast delivery</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -457,11 +457,11 @@ export default function HomePage() {
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <div className="p-8 text-center">
-                    <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <div className="w-20 h-20 mx-auto rounded-2xl bg-[#2874F0] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl group-hover:shadow-[#2874F0]/30">
                       <Icon className="w-10 h-10 text-white" />
                     </div>
-                    <h3 className="font-bold text-xl mb-3 text-black group-hover:text-primary transition-colors">{feature.title}</h3>
-                    <p className="text-sm text-gray-700 leading-relaxed">{feature.description}</p>
+                    <h3 className="font-bold text-xl mb-3 text-gray-900 group-hover:text-[#2874F0] transition-colors">{feature.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
                   </div>
                 </Card>
               )
@@ -474,10 +474,10 @@ export default function HomePage() {
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
-              Loved by <span className="bg-gradient-to-r from-[#2874F0] to-purple-600 bg-clip-text text-transparent">Makers</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
+              Loved by <span className="text-[#2874F0]">Makers</span>
             </h2>
-            <p className="text-gray-800 text-lg font-medium">See what our community has to say</p>
+            <p className="text-gray-600 text-lg font-medium">See what our community has to say</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -515,14 +515,14 @@ export default function HomePage() {
                       <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-black mb-4 leading-relaxed font-medium">{testimonial.content}</p>
+                  <p className="text-gray-700 mb-4 leading-relaxed font-medium">{testimonial.content}</p>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
+                    <div className="w-10 h-10 rounded-full bg-[#2874F0] flex items-center justify-center text-white font-semibold shadow-md">
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="font-semibold text-sm text-black">{testimonial.name}</div>
-                      <div className="text-xs text-gray-600">{testimonial.role}</div>
+                      <div className="font-semibold text-sm text-gray-900">{testimonial.name}</div>
+                      <div className="text-xs text-gray-500">{testimonial.role}</div>
                     </div>
                   </div>
                 </div>

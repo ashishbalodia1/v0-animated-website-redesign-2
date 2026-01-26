@@ -131,16 +131,16 @@ export default function ProductsPage() {
           {/* Sidebar Filters */}
           <aside className={`lg:w-72 space-y-4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
             <Card className="sticky top-32 border-0 shadow-lg rounded-xl">
-              <CardHeader className="pb-3 bg-gradient-to-br from-gray-50 to-white rounded-t-xl">
+              <CardHeader className="pb-3 bg-gradient-to-br from-gray-50 to-white rounded-t-xl border-b border-gray-100">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-bold flex items-center gap-2 text-black">
-                    <div className="p-2 bg-primary rounded-lg">
+                  <h2 className="text-lg font-bold flex items-center gap-2 text-gray-900">
+                    <div className="p-2 bg-[#2874F0] rounded-lg shadow-md">
                       <Filter className="h-4 w-4 text-white" />
                     </div>
                     Filters
                   </h2>
                   {(selectedCategory !== "all" || priceRange[0] !== 0 || priceRange[1] !== 5000 || selectedRatings.length > 0) && (
-                    <Button variant="ghost" size="sm" onClick={clearFilters} className="text-primary hover:bg-primary/10 font-semibold">
+                    <Button variant="ghost" size="sm" onClick={clearFilters} className="text-[#2874F0] hover:bg-blue-50 font-semibold">
                       Clear All
                     </Button>
                   )}
@@ -149,14 +149,14 @@ export default function ProductsPage() {
               <CardContent className="space-y-6">
                 {/* Categories */}
                 <div>
-                  <h3 className="font-semibold mb-3 text-sm uppercase text-black">Categories</h3>
+                  <h3 className="font-semibold mb-3 text-sm uppercase text-gray-700">Categories</h3>
                   <div className="space-y-2">
                     <button
                       onClick={() => setSelectedCategory("all")}
                       className={`w-full text-left px-3 py-2 rounded-md transition-colors text-sm font-medium ${
                         selectedCategory === "all"
-                          ? "bg-primary text-white"
-                          : "hover:bg-accent text-black"
+                          ? "bg-[#2874F0] text-white shadow-md"
+                          : "hover:bg-gray-100 text-gray-700"
                       }`}
                     >
                       All Products
@@ -213,7 +213,7 @@ export default function ProductsPage() {
                         />
                         <label
                           htmlFor={`rating-${rating}`}
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-1 cursor-pointer text-black"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-1 cursor-pointer text-gray-700"
                         >
                           {rating}
                           <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
@@ -232,9 +232,9 @@ export default function ProductsPage() {
             {/* Results Bar */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
               <div>
-                <h1 className="text-2xl font-bold text-black">Electronics Components</h1>
+                <h1 className="text-2xl font-bold text-gray-900">Electronics Components</h1>
                 <p className="text-sm text-gray-600 mt-1">
-                  Showing <span className="font-semibold text-black">{sortedProducts.length}</span> of {allProductsCount} products
+                  Showing <span className="font-semibold text-[#2874F0]">{sortedProducts.length}</span> of {allProductsCount} products
                 </p>
               </div>
               <DropdownMenu>

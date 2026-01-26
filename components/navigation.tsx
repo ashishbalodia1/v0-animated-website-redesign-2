@@ -57,17 +57,17 @@ export function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-lg" : "bg-white/90 backdrop-blur-md border-b border-gray-200"
+        scrolled ? "bg-white/98 backdrop-blur-lg shadow-md" : "bg-white/95 backdrop-blur-md shadow-sm"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group transition-transform hover:scale-105">
-            <div className="w-10 h-10 bg-[#2874F0] rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-blue-500/50 transition-shadow">
+            <div className="w-10 h-10 bg-[#2874F0] rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:shadow-[#2874F0]/30 transition-all">
               <ShoppingBag className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-[#2874F0]">
+            <span className="text-xl md:text-2xl font-bold text-[#2874F0]">
               ElectronicsHub
             </span>
           </Link>
@@ -79,7 +79,7 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-semibold transition-all hover:text-[#2874F0] relative group ${
-                  pathname === link.href ? "text-[#2874F0]" : "text-black"
+                  pathname === link.href ? "text-[#2874F0]" : "text-gray-700"
                 }`}
               >
                 {link.label}
