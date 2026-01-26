@@ -268,8 +268,8 @@ export default function ProductsPage() {
             {sortedProducts.length === 0 ? (
               <div className="text-center py-20">
                 <div className="text-6xl mb-4">📦</div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">No products found</h3>
-                <p className="text-muted-foreground mb-4">Try adjusting your filters or search</p>
+                <h3 className="text-xl font-semibold mb-2 text-gray-900">No products found</h3>
+                <p className="text-gray-600 mb-4">Try adjusting your filters or search</p>
                 <Button onClick={clearFilters}>Clear Filters</Button>
               </div>
             ) : (
@@ -293,7 +293,7 @@ export default function ProductsPage() {
                             className={`h-5 w-5 transition-all ${
                               isInWishlist(product.name)
                                 ? "fill-red-500 text-red-500"
-                                : "text-muted-foreground hover:text-red-500"
+                                : "text-gray-600 hover:text-red-500"
                             }`}
                           />
                         </button>
@@ -309,22 +309,22 @@ export default function ProductsPage() {
                       <Badge variant="outline" className="mb-2 text-xs border-[#2874F0] text-[#2874F0]">
                         {product.category}
                       </Badge>
-                      <h3 className="font-semibold text-base mb-2 line-clamp-2 min-h-[48px] text-foreground" title={product.name}>
+                      <h3 className="font-semibold text-base mb-2 line-clamp-2 min-h-[48px] text-gray-900" title={product.name}>
                         {product.name}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">
                         {product.description}
                       </p>
                       <div className="flex items-baseline gap-2 mb-3">
-                        <span className="text-2xl font-bold text-primary">₹{product.price}</span>
-                        <span className="text-sm text-muted-foreground line-through">₹{Math.round(product.price * 1.3)}</span>
+                        <span className="text-2xl font-bold text-[#2874F0]">₹{product.price}</span>
+                        <span className="text-sm text-gray-500 line-through">₹{Math.round(product.price * 1.3)}</span>
                         <span className="text-xs text-green-600 font-semibold">23% off</span>
                       </div>
                     </CardContent>
                     <CardFooter className="p-4 pt-0 gap-2">
                       <Button 
                         onClick={() => handleAddToCart(product, product.category)}
-                        className="flex-1 group/btn font-semibold bg-accent hover:bg-accent/90" 
+                        className="flex-1 group/btn font-semibold bg-[#FF9900] hover:bg-[#E68A00] text-white" 
                         size="sm"
                       >
                         <ShoppingCart className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform" />

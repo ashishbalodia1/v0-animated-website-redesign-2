@@ -178,10 +178,10 @@ export default function AboutPage() {
             <Badge className="mb-4 px-4 py-2 bg-[#2874F0] text-white border-0">
               What We Do
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
               Our <span className="text-[#2874F0]">Services</span>
             </h2>
-            <p className="text-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Professional services to support your academic and research endeavors
             </p>
           </div>
@@ -234,17 +234,17 @@ export default function AboutPage() {
               >
                 <div className="p-6">
                   <div className="text-4xl mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-[#2874F0] transition-colors">
+                  <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-[#2874F0] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                  <p className="text-gray-600 mb-4 leading-relaxed">
                     {service.description}
                   </p>
                   <div className="space-y-2">
                     {service.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-sm">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#2874F0]"></div>
-                        <span className="text-muted-foreground">{feature}</span>
+                        <span className="text-gray-700">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -268,10 +268,10 @@ export default function AboutPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
               Our <span className="text-[#2874F0]">Values</span>
             </h2>
-            <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               The principles that guide everything we do
             </p>
           </div>
@@ -291,8 +291,8 @@ export default function AboutPage() {
                     <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 text-black">{value.title}</h3>
-                    <p className="text-sm text-gray-700 leading-relaxed">{value.description}</p>
+                    <h3 className="font-semibold text-lg mb-2 text-gray-900">{value.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{value.description}</p>
                   </div>
                 </Card>
               )
@@ -305,10 +305,10 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
               Meet Our <span className="text-[#2874F0]">Team</span>
             </h2>
-            <p className="text-gray-700 text-lg max-w-2xl mx-auto">The passionate students behind ElectronicsHub</p>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">The passionate students behind ElectronicsHub</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -329,9 +329,9 @@ export default function AboutPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent opacity-60" />
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="font-semibold text-lg mb-1 text-black">{member.name}</h3>
+                  <h3 className="font-semibold text-lg mb-1 text-gray-900">{member.name}</h3>
                   <p className="text-sm text-[#2874F0] mb-3">{member.role}</p>
-                  <p className="text-sm text-gray-700 leading-relaxed">{member.bio}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{member.bio}</p>
                 </div>
               </Card>
             ))}
@@ -345,8 +345,8 @@ export default function AboutPage() {
           <Card className="border-gray-200 shadow-2xl max-w-4xl mx-auto bg-white">
             <div className="p-12 md:p-16 text-center">
               <Zap className="w-16 h-16 mx-auto mb-6 text-[#2874F0]" />
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">Join Our Growing Community</h2>
-              <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Join Our Growing Community</h2>
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
                 Be part of the electronics revolution. Start building your projects with quality components today.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -357,7 +357,7 @@ export default function AboutPage() {
                 >
                   <Link href="/register">Get Started</Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild className="border-gray-300 bg-transparent h-12 px-8 text-black hover:bg-gray-100">
+                <Button size="lg" variant="outline" asChild className="border-gray-300 bg-transparent h-12 px-8 text-gray-900 hover:bg-gray-100">
                   <Link href="/feedback">Contact Us</Link>
                 </Button>
               </div>
