@@ -109,14 +109,14 @@ export default function ProductsPage() {
               <Input
                 type="text"
                 placeholder="Search for Arduino, sensors, motors, displays..."
-                className="pl-12 pr-4 h-14 text-base border-2 border-gray-200 focus:border-[#2874F0] rounded-lg shadow-sm"
+                className="pl-12 pr-4 h-14 text-base text-gray-900 placeholder:text-gray-500 border-2 border-gray-200 focus:border-[#2874F0] rounded-lg shadow-sm bg-white"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <Button
               variant="outline"
-              className="lg:hidden border-2 h-14"
+              className="lg:hidden border-2 h-14 text-gray-900 border-gray-300 hover:bg-gray-50"
               onClick={() => setShowFilters(!showFilters)}
             >
               <SlidersHorizontal className="h-4 w-4 mr-2" />
