@@ -197,9 +197,9 @@ export default function HomePage() {
   }, [api])
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Slideshow - Flipkart Style */}
-      <section className="pt-20 bg-white">
+      <section className="pt-20 bg-background">
         <div className="container mx-auto px-4">
           <Carousel
             opts={{
@@ -267,34 +267,18 @@ export default function HomePage() {
             </CarouselContent>
             <CarouselPrevious className="left-4 bg-white/90 hover:bg-white border-0 shadow-lg" />
             <CarouselNext className="right-4 bg-white/90 hover:bg-white border-0 shadow-lg" />
-            
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-4">
-              {heroSlides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => api?.scrollTo(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    index === current
-                      ? "w-8 bg-[#2874F0]"
-                      : "w-2 bg-gray-300 hover:bg-gray-400"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
           </Carousel>
         </div>
       </section>
 
       {/* Search Bar Section */}
-      <section className="py-8 bg-white">
+      <section className="py-8 bg-background">
         <div className="container mx-auto px-4">
           <div className="relative max-w-2xl mx-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <Input
               placeholder="Search for Arduino, sensors, modules..."
-              className="pl-12 h-14 bg-white border-2 border-gray-200 shadow-lg focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0] text-black placeholder:text-gray-400"
+              className="pl-12 h-14 border-2 shadow-lg"
             />
           </div>
         </div>
@@ -315,7 +299,7 @@ export default function HomePage() {
                 <div className="text-3xl md:text-4xl font-bold text-[#2874F0] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-black font-medium">{stat.label}</div>
+                <div className="text-sm text-foreground font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -330,7 +314,7 @@ export default function HomePage() {
               <div className="flex items-center gap-3 mb-2">
                 <Flame className="w-8 h-8 text-orange-500" />
                 <h2 className="text-3xl md:text-5xl font-bold">
-                  <span className="text-black">Trending</span> <span className="text-[#2874F0]">Now</span>
+                  <span className="text-foreground">Trending</span> <span className="text-primary">Now</span>
                 </h2>
               </div>
               <p className="text-black text-lg">Most popular products this week</p>
@@ -347,7 +331,7 @@ export default function HomePage() {
             {trendingProducts.map((product, index) => (
               <Card
                 key={product.id}
-                className={`group relative overflow-hidden bg-white border border-gray-200 hover:border-[#2874F0]/50 cursor-pointer transition-all duration-300 hover:shadow-xl ${
+                className={`group relative overflow-hidden border cursor-pointer transition-all duration-300 hover:shadow-xl ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
@@ -474,7 +458,7 @@ export default function HomePage() {
               return (
                 <Link key={category.name} href={category.href}>
                   <Card
-                    className={`group relative overflow-hidden bg-white border border-gray-200 hover:border-[#2874F0]/50 cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                    className={`group relative overflow-hidden border cursor-pointer transition-all duration-300 hover:shadow-lg ${
                       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                     }`}
                     style={{ transitionDelay: `${index * 100}ms` }}
@@ -511,17 +495,17 @@ export default function HomePage() {
               return (
                 <Card
                   key={index}
-                  className={`group relative overflow-hidden bg-white border border-gray-200 hover:border-[#2874F0]/30 cursor-pointer transition-all duration-300 hover:shadow-xl ${
+                  className={`group relative overflow-hidden border cursor-pointer transition-all duration-300 hover:shadow-xl ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <div className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-[#2874F0] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-8 h-8 text-white" />
+                    <div className="w-16 h-16 mx-auto rounded-full bg-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Icon className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 text-black">{feature.title}</h3>
-                    <p className="text-sm text-black leading-relaxed">{feature.description}</p>
+                    <h3 className="font-semibold text-lg mb-2 text-foreground">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
                   </div>
                 </Card>
               )
@@ -564,7 +548,7 @@ export default function HomePage() {
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className={`group bg-white border border-gray-200 hover:border-[#2874F0]/30 transition-all duration-500 hover:scale-105 hover:shadow-xl ${
+                className={`group border transition-all duration-500 hover:scale-105 hover:shadow-xl ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
@@ -575,14 +559,14 @@ export default function HomePage() {
                       <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-black mb-4 leading-relaxed">{testimonial.content}</p>
+                  <p className="text-foreground mb-4 leading-relaxed">{testimonial.content}</p>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#2874F0] flex items-center justify-center text-white font-semibold">
+                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="font-semibold text-sm text-black">{testimonial.name}</div>
-                      <div className="text-xs text-gray-600">{testimonial.role}</div>
+                      <div className="font-semibold text-sm text-foreground">{testimonial.name}</div>
+                      <div className="text-xs text-muted-foreground">{testimonial.role}</div>
                     </div>
                   </div>
                 </div>
@@ -607,7 +591,8 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   asChild
-                  className="w-full sm:w-auto bg-white text-[#2874F0] hover:bg-gray-100 hover:shadow-xl transition-all duration-300 h-12 px-8 font-semibold"
+                  variant="secondary"
+                  className="w-full sm:w-auto hover:shadow-xl transition-all duration-300 h-12 px-8 font-semibold"
                 >
                   <Link href="/register">
                     Create Account

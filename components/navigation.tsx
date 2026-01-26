@@ -1,19 +1,42 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Menu, X, ShoppingBag, User } from "lucide-react"
+import { Menu, X, ShoppingBag, User, LogOut } from "lucide-react"
 import { useState, useEffect } from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { CartButton } from "@/components/cart-button"
 import { WishlistButton } from "@/components/wishlist-button"
 import { NotificationsButton } from "@/components/notifications-button"
+import { getCurrentUser, logout } from "@/lib/auth"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [user, setUser] = useState<{ name: string; email: string } | null>(null)
   const pathname = usePathname()
+  const router = useRouter()
+
+  useEffect(() => {
+    // Check if user is logged in
+    const currentUser = getCurrentUser()
+    setUser(currentUser)
+  }, [pathname]) // Re-check on route change
+
+  const handleLogout = () => {
+    logout()
+    setUser(null)
+    router.push("/")
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,18 +97,46 @@ export function Navigation() {
             <NotificationsButton />
             <WishlistButton />
             <CartButton />
-            <Button variant="ghost" size="icon" className="hover:bg-blue-50 transition-all hover:scale-110 text-black">
-              <User className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" asChild className="hover:bg-blue-50 text-black font-semibold">
-              <Link href="/login">Login</Link>
-            </Button>
-            <Button
-              asChild
-              className="bg-[#2874F0] hover:bg-[#2366d1] text-white transition-all shadow-lg hover:shadow-blue-500/50 font-semibold"
-            >
-              <Link href="/register">Get Started</Link>
-            </Button>
+            
+            {user ? (
+              // User is logged in - show account menu
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="hover:bg-blue-50 text-black font-semibold gap-2">
+                    <User className="h-5 w-5" />
+                    {user.name}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 bg-white border-gray-200">
+                  <DropdownMenuLabel className="text-black">My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-gray-200" />
+                  <DropdownMenuItem className="text-black hover:bg-blue-50 cursor-pointer">
+                    <User className="h-4 w-4 mr-2" />
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={handleLogout}
+                    className="text-red-600 hover:bg-red-50 cursor-pointer"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              // User not logged in - show login/register buttons
+              <>
+                <Button variant="ghost" asChild className="hover:bg-blue-50 text-black font-semibold">
+                  <Link href="/login">Login</Link>
+                </Button>
+                <Button
+                  asChild
+                  className="bg-[#2874F0] hover:bg-[#2366d1] text-white transition-all shadow-lg hover:shadow-blue-500/50 font-semibold"
+                >
+                  <Link href="/register">Get Started</Link>
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,9 +156,6 @@ export function Navigation() {
               <NotificationsButton />
               <WishlistButton />
               <CartButton />
-              <Button variant="ghost" size="icon" className="hover:bg-blue-50 text-black">
-                <User className="h-5 w-5" />
-              </Button>
             </div>
             <div className="flex flex-col gap-4 pt-4">
               {navLinks.map((link) => (
@@ -123,16 +171,48 @@ export function Navigation() {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 px-4 pt-2 border-t border-gray-200">
-                <Button variant="outline" asChild className="w-full bg-white text-black border-gray-300 font-semibold">
-                  <Link href="/login" onClick={() => setIsOpen(false)}>
-                    Login
-                  </Link>
-                </Button>
-                <Button asChild className="w-full bg-[#2874F0] hover:bg-[#2366d1] text-white font-semibold">
-                  <Link href="/register" onClick={() => setIsOpen(false)}>
-                    Get Started
-                  </Link>
-                </Button>
+                {user ? (
+                  // User is logged in
+                  <>
+                    <div className="py-2 px-3 bg-blue-50 rounded-lg">
+                      <p className="text-xs text-gray-600">Logged in as</p>
+                      <p className="text-sm font-semibold text-black">{user.name}</p>
+                      <p className="text-xs text-gray-600">{user.email}</p>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      className="w-full bg-white text-black border-gray-300 font-semibold"
+                    >
+                      <User className="h-4 w-4 mr-2" />
+                      Profile
+                    </Button>
+                    <Button 
+                      onClick={() => {
+                        handleLogout()
+                        setIsOpen(false)
+                      }}
+                      variant="outline"
+                      className="w-full text-red-600 border-red-200 hover:bg-red-50 font-semibold"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  // User not logged in
+                  <>
+                    <Button variant="outline" asChild className="w-full bg-white text-black border-gray-300 font-semibold">
+                      <Link href="/login" onClick={() => setIsOpen(false)}>
+                        Login
+                      </Link>
+                    </Button>
+                    <Button asChild className="w-full bg-[#2874F0] hover:bg-[#2366d1] text-white font-semibold">
+                      <Link href="/register" onClick={() => setIsOpen(false)}>
+                        Get Started
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>

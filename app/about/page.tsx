@@ -72,7 +72,7 @@ export default function AboutPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-background pt-20">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-4">
@@ -88,9 +88,9 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance leading-tight">
               <span className="text-[#2874F0]">Your Trusted Partner,</span>
               <br />
-              <span className="text-gray-900">For Electronics</span>
+              <span className="text-foreground">For Electronics</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               We started with a simple goal: provide quality electronics components to makers, hobbyists, and students 
               at competitive prices with fast delivery across India.
             </p>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-3xl md:text-4xl font-bold text-[#2874F0] mb-2">{stat.value}</div>
-                  <div className="text-sm text-black font-medium">{stat.label}</div>
+                  <div className="text-sm text-foreground font-medium">{stat.label}</div>
                 </div>
               )
             })}

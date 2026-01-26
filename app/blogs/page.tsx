@@ -600,7 +600,7 @@ export default function BlogsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-background pt-20">
       {/* Hero Section */}
       <section className="py-12 border-b bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-4">
@@ -609,10 +609,10 @@ export default function BlogsPage() {
               <BookOpen className="w-4 h-4 text-[#2874F0]" />
               <span className="text-sm font-semibold text-[#2874F0]">Electronics Blog</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
               Learn Electronics & IoT
             </h1>
-            <p className="text-lg text-gray-700 mb-8">
+            <p className="text-lg text-muted-foreground mb-8">
               Tutorials, guides, and tips for makers, students, and hobbyists
             </p>
             
@@ -622,7 +622,7 @@ export default function BlogsPage() {
               <Input
                 type="text"
                 placeholder="Search articles..."
-                className="pl-12 pr-4 h-12 text-base border-2 border-gray-200 bg-white focus:ring-2 focus:ring-[#2874F0] focus:border-[#2874F0] text-black placeholder:text-gray-400"
+                className="pl-12 pr-4 h-12 text-base"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

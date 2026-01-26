@@ -54,7 +54,7 @@ export default function FeedbackPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-background pt-20">
       {/* Hero Section */}
       <section className="relative py-16 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-4">
@@ -70,7 +70,7 @@ export default function FeedbackPage() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance">
               <span className="text-[#2874F0]">We're Here to Help</span>
             </h1>
-            <p className="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
               Have a question, suggestion, or need assistance? Our support team is ready to help you with
               anything you need.
             </p>
