@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle2, Clock, HeadphonesIcon } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
+import { sendQueryNotification, sendQueryConfirmation } from "@/lib/email"
 
 const contactMethods = [
   {
@@ -48,10 +50,84 @@ const feedbackCategories = [
 export default function FeedbackPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState(feedbackCategories[0])
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { toast } = useToast()
+  
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  })
 
   useEffect(() => {
     setIsVisible(true)
   }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!formData.firstName || !formData.email || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const fullName = `${formData.firstName} ${formData.lastName}`.trim()
+      
+      // Send notification to admin
+      const adminResult = await sendQueryNotification({
+        name: fullName,
+        email: formData.email,
+        phone: formData.phone,
+        category: selectedCategory,
+        message: `Subject: ${formData.subject}\n\n${formData.message}`,
+      })
+
+      if (adminResult.success) {
+        // Send confirmation to customer
+        await sendQueryConfirmation(formData.email, fullName, selectedCategory)
+        
+        toast({
+          title: "✅ Message Sent Successfully!",
+          description: "We'll respond within 24 hours. Check your email for confirmation.",
+        })
+
+        // Reset form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        })
+        setSelectedCategory(feedbackCategories[0])
+      } else {
+        toast({
+          title: "Query Saved",
+          description: "Email service unavailable, but your query has been recorded.",
+        })
+      }
+    } catch (error) {
+      console.error("Error submitting query:", error)
+      toast({
+        title: "Submission Error",
+        description: "Please try again or contact us directly",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background pt-20">
@@ -117,30 +193,66 @@ export default function FeedbackPage() {
                   <p className="text-gray-700">Fill out the form below and we'll get back to you shortly.</p>
                 </div>
 
-                <form className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName" className="text-black">First Name</Label>
-                      <Input id="firstName" type="text" placeholder="John" className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" />
+                      <Label htmlFor="firstName" className="text-black">First Name *</Label>
+                      <Input 
+                        id="firstName" 
+                        type="text" 
+                        placeholder="John" 
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                        className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" 
+                        required
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName" className="text-black">Last Name</Label>
-                      <Input id="lastName" type="text" placeholder="Doe" className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" />
+                      <Input 
+                        id="lastName" 
+                        type="text" 
+                        placeholder="Doe" 
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                        className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" 
+                      />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-black">Email Address</Label>
-                    <Input id="email" type="email" placeholder="maker@email.com" className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" />
+                    <Label htmlFor="email" className="text-black">Email Address *</Label>
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="maker@email.com" 
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" 
+                      required
+                    />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="category" className="text-black">Category</Label>
+                    <Label htmlFor="phone" className="text-black">Phone Number (Optional)</Label>
+                    <Input 
+                      id="phone" 
+                      type="tel" 
+                      placeholder="+91 98765 43210" 
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" 
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="category" className="text-black">Category *</Label>
                     <select
                       id="category"
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
                       className="w-full h-11 px-3 rounded-lg border border-gray-200 bg-white text-black focus:outline-none focus:ring-2 focus:ring-[#2874F0]"
+                      required
                     >
                       {feedbackCategories.map((category) => (
                         <option key={category} value={category}>
@@ -152,25 +264,45 @@ export default function FeedbackPage() {
 
                   <div className="space-y-2">
                     <Label htmlFor="subject" className="text-black">Subject</Label>
-                    <Input id="subject" type="text" placeholder="How can we help you?" className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" />
+                    <Input 
+                      id="subject" 
+                      type="text" 
+                      placeholder="How can we help you?" 
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="h-11 bg-white border-gray-200 text-black placeholder:text-gray-400" 
+                    />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-black">Message</Label>
+                    <Label htmlFor="message" className="text-black">Message *</Label>
                     <Textarea
                       id="message"
                       placeholder="Tell us more about your inquiry..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="min-h-[120px] resize-none bg-white border-gray-200 text-black placeholder:text-gray-400"
+                      required
                     />
                   </div>
 
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full h-12 bg-[#2874F0] hover:bg-[#2366d1] text-white transition-all"
+                    disabled={isSubmitting}
+                    className="w-full h-12 bg-[#2874F0] hover:bg-[#2366d1] text-white transition-all disabled:opacity-50"
                   >
-                    <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <Clock className="w-4 h-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
                 </form>
               </div>
