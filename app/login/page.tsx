@@ -99,22 +99,22 @@ export default function LoginPage() {
               <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center">
                 <LogIn className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-2 text-foreground">Welcome Back!</h2>
-              <p className="text-muted-foreground">Sign in to continue shopping</p>
+              <h2 className="text-3xl font-bold mb-2 text-gray-900">Welcome Back!</h2>
+              <p className="text-gray-600 font-medium">Sign in to continue shopping</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email" className="text-gray-900 font-semibold">Email Address</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`pl-11 h-11 ${
+                    className={`pl-11 h-11 text-gray-900 placeholder:text-gray-500 ${
                       errors.email ? "border-red-500" : ""
                     }`}
                     disabled={isLoading}
@@ -127,20 +127,20 @@ export default function LoginPage() {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Password</Label>
-                  <Link href="/register" className="text-sm text-primary hover:underline">
+                  <Label htmlFor="password" className="text-gray-900 font-semibold">Password</Label>
+                  <Link href="/register" className="text-sm text-[#2874F0] hover:underline font-medium">
                     Don't have an account?
                   </Link>
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
                     value={formData.password}
                     onChange={handleChange}
-                    className={`pl-11 pr-11 h-11 ${
+                    className={`pl-11 pr-11 h-11 text-gray-900 placeholder:text-gray-500 ${
                       errors.password ? "border-red-500" : ""
                     }`}
                     disabled={isLoading}
@@ -148,7 +148,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900 transition-colors"
                     disabled={isLoading}
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -165,10 +165,10 @@ export default function LoginPage() {
                   id="remember"
                   checked={formData.remember}
                   onChange={handleChange}
-                  className="w-4 h-4 rounded border-input text-primary focus:ring-primary"
+                  className="w-4 h-4 rounded border-gray-300 text-[#2874F0] focus:ring-[#2874F0]"
                   disabled={isLoading}
                 />
-                <Label htmlFor="remember" className="text-sm text-muted-foreground font-normal cursor-pointer">
+                <Label htmlFor="remember" className="text-sm text-gray-700 font-normal cursor-pointer">
                   Remember me for 30 days
                 </Label>
               </div>
@@ -191,9 +191,9 @@ export default function LoginPage() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-gray-700">
                 Don't have an account?{" "}
-                <Link href="/register" className="text-primary hover:underline font-semibold">
+                <Link href="/register" className="text-[#2874F0] hover:underline font-semibold">
                   Sign up now
                 </Link>
               </p>
@@ -204,50 +204,50 @@ export default function LoginPage() {
         {/* Right Side - Info */}
         <div className="space-y-8 order-1 lg:order-2">
           <div className="space-y-4">
-            <Badge className="px-4 py-2 bg-gradient-to-r from-primary/20 to-accent/20 text-primary border-primary/30">
+            <Badge className="px-4 py-2 bg-blue-100 text-[#2874F0] border-0 font-semibold">
               <ShoppingBag className="w-4 h-4 mr-2" />
-              Student Marketplace
+              Electronics Marketplace
             </Badge>
             <h1 className="text-5xl font-bold leading-tight">
-              <span className="text-foreground">Continue Your</span>
+              <span className="text-gray-900">Continue Your</span>
               <br />
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="text-[#2874F0]">
                 Shopping Journey
               </span>
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-lg text-gray-700 leading-relaxed font-medium">
               Access your wishlist, track orders, and enjoy exclusive student benefits.
             </p>
           </div>
 
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20">
+          <div className="p-8 rounded-2xl bg-blue-50 border-2 border-blue-100">
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <div className="text-3xl font-bold text-primary mb-1">50K+</div>
-                <div className="text-sm text-muted-foreground">Active Students</div>
+                <div className="text-3xl font-bold text-[#2874F0] mb-1">50K+</div>
+                <div className="text-sm text-gray-700 font-medium">Active Students</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-1">10K+</div>
-                <div className="text-sm text-muted-foreground">Products</div>
+                <div className="text-3xl font-bold text-[#2874F0] mb-1">10K+</div>
+                <div className="text-sm text-gray-700 font-medium">Products</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-1">100+</div>
-                <div className="text-sm text-muted-foreground">Campus Partners</div>
+                <div className="text-3xl font-bold text-[#2874F0] mb-1">100+</div>
+                <div className="text-sm text-gray-700 font-medium">Campus Partners</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary mb-1">4.8/5</div>
-                <div className="text-sm text-muted-foreground">User Rating</div>
+                <div className="text-3xl font-bold text-[#2874F0] mb-1">4.8/5</div>
+                <div className="text-sm text-gray-700 font-medium">User Rating</div>
               </div>
             </div>
           </div>
 
-          <div className="hidden lg:block p-6 rounded-2xl bg-muted/50 border border-border">
-            <p className="text-sm font-medium mb-2">Customer Review</p>
-            <p className="text-muted-foreground text-sm mb-3 italic">
-              "CampusCart made it so easy to get everything I needed for college. Great discounts and super fast
+          <div className="hidden lg:block p-6 rounded-2xl bg-gray-50 border-2 border-gray-200">
+            <p className="text-sm font-semibold mb-2 text-gray-900">Customer Review</p>
+            <p className="text-gray-700 text-sm mb-3 italic font-medium">
+              "ElectronicsHub made it so easy to get everything I needed for my projects. Great discounts and super fast
               delivery!"
             </p>
-            <p className="text-sm font-medium">- Sarah J., Computer Science</p>
+            <p className="text-sm font-semibold text-gray-900">- Sarah J., Computer Science</p>
           </div>
         </div>
       </div>

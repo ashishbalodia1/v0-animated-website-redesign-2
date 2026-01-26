@@ -55,7 +55,7 @@ export function ProductDetailModal({ product, isOpen, onClose, onAddToCart }: Pr
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-white">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-gray-900">Product Details</DialogTitle>
         </DialogHeader>
@@ -124,7 +124,7 @@ export function ProductDetailModal({ product, isOpen, onClose, onAddToCart }: Pr
               </div>
 
               {/* Description */}
-              <p className="text-gray-600 leading-relaxed mb-4">
+              <p className="text-gray-800 leading-relaxed mb-4 font-medium">
                 {product.description || "High-quality electronics component perfect for your DIY projects, robotics, and IoT applications. Reliable performance and excellent compatibility."}
               </p>
             </div>
@@ -146,7 +146,7 @@ export function ProductDetailModal({ product, isOpen, onClose, onAddToCart }: Pr
                   </>
                 )}
               </div>
-              <p className="text-sm text-gray-600">Inclusive of all taxes</p>
+              <p className="text-sm text-gray-800 font-medium">Inclusive of all taxes</p>
             </div>
 
             {/* Specifications */}
