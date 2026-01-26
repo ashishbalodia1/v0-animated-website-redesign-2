@@ -208,18 +208,22 @@ export function QASection() {
                           </div>
                           
                           {/* Edit/Delete buttons for query owner */}
-                          {canEditDelete(query) && query.status === "pending" && (
+                          {canEditDelete(query) && (
                             <div className="flex gap-2">
                               {editingId !== query.id && (
                                 <>
-                                  <Button
-                                    onClick={() => handleEditStart(query)}
-                                    variant="outline"
-                                    size="sm"
-                                    className="border-blue-300 text-blue-600 hover:bg-blue-50"
-                                  >
-                                    <Edit2 className="w-3 h-3" />
-                                  </Button>
+                                  {/* Edit button only for pending queries */}
+                                  {query.status === "pending" && (
+                                    <Button
+                                      onClick={() => handleEditStart(query)}
+                                      variant="outline"
+                                      size="sm"
+                                      className="border-blue-300 text-blue-600 hover:bg-blue-50"
+                                    >
+                                      <Edit2 className="w-3 h-3" />
+                                    </Button>
+                                  )}
+                                  {/* Delete button always available for owner */}
                                   <Button
                                     onClick={() => handleDelete(query.id)}
                                     variant="outline"
