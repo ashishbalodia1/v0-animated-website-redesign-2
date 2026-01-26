@@ -101,7 +101,7 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-background pt-20">
       {/* Search Header */}
-      <div className="bg-background border-b sticky top-16 z-40 shadow-sm">
+      <div className="bg-background sticky top-16 z-40 shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
             <div className="flex-1 relative">

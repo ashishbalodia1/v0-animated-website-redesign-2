@@ -436,10 +436,10 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
               Why Shop <span className="text-[#2874F0]">With Us</span>
             </h2>
-            <p className="text-black text-lg">Quality components, great prices, fast delivery</p>
+            <p className="text-foreground text-lg">Quality components, great prices, fast delivery</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -471,10 +471,10 @@ export default function HomePage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
               Loved by <span className="text-[#2874F0]">Makers</span>
             </h2>
-            <p className="text-black text-lg">See what our community has to say</p>
+            <p className="text-foreground text-lg">See what our community has to say</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -501,7 +501,7 @@ export default function HomePage() {
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className={`group border transition-all duration-500 hover:scale-105 hover:shadow-xl ${
+                className={`group bg-white border transition-all duration-500 hover:scale-105 hover:shadow-xl ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
@@ -530,9 +530,9 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <Card className="border-gray-200 shadow-xl overflow-hidden bg-gradient-to-br from-[#2874F0] to-[#1e5bb8]">
+          <Card className="border-0 shadow-xl overflow-hidden bg-gradient-to-br from-[#2874F0] to-[#1e5bb8]">
             <div className="p-12 md:p-16 text-center">
               <Award className="w-16 h-16 mx-auto mb-6 text-white" />
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-balance text-white">Ready to Build Your Project?</h2>

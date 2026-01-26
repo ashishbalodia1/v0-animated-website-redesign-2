@@ -172,7 +172,7 @@ export default function AboutPage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge className="mb-4 px-4 py-2 bg-[#2874F0] text-white border-0">
@@ -181,7 +181,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
               Our <span className="text-[#2874F0]">Services</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-foreground text-lg max-w-2xl mx-auto">
               Professional services to support your academic and research endeavors
             </p>
           </div>
@@ -227,7 +227,7 @@ export default function AboutPage() {
             ].map((service, index) => (
               <Card
                 key={index}
-                className={`group hover:shadow-xl transition-all duration-500 hover:-translate-y-2 ${
+                className={`group bg-white hover:shadow-xl transition-all duration-500 hover:-translate-y-2 ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
