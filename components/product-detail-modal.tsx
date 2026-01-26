@@ -64,13 +64,23 @@ export function ProductDetailModal({ product, isOpen, onClose, onAddToCart }: Pr
           {/* Left: Image */}
           <div className="relative">
             <div className="relative aspect-square bg-white rounded-xl overflow-hidden border-2 border-gray-200 product-image-container">
-              <Image
-                src={product.image || "/placeholder.svg"}
-                alt={product.name}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {product.folder ? (
+                <Image
+                  src={`/${product.folder}/${product.image}`}
+                  alt={product.name}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              ) : (
+                <Image
+                  src={product.image || "/placeholder.svg"}
+                  alt={product.name}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              )}
             </div>
 
             {/* Live Stats */}

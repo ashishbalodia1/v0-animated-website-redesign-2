@@ -1,12 +1,15 @@
-// Simple authentication using localStorage (for demo purposes)
-// In production, use proper backend authentication with database and NextAuth.js
+// Hybrid authentication system
+// Uses Supabase database when configured, falls back to localStorage
+import { registerWithDB, loginWithDB, logoutFromDB, getCurrentUserFromDB, isAuthenticatedDB } from './auth-db'
+import { isSupabaseConfigured } from './supabase'
 
 export interface User {
   id: string
   email: string
   name: string
-  phone: string
-  createdAt: string
+  phone?: string
+  created_at?: string
+  createdAt?: string
 }
 
 export interface AuthData {
@@ -42,8 +45,24 @@ const verifyPassword = (password: string, hashedPassword: string): boolean => {
   return btoa(password) === hashedPassword
 }
 
-// Register new user
-export const register = (data: AuthData): { success: boolean; message: string; user?: User } => {
+// Register new user (uses database if configured, otherwise localStorage)
+export const register = async (data: AuthData): Promise<{ success: boolean; message: string; user?: User }> => {
+  // Try database first
+  if (isSupabaseConfigured) {
+    try {
+      return await registerWithDB(data)
+    } catch (error) {
+      console.error('Database registration failed, falling back to localStorage:', error)
+      // Fall through to localStorage
+    }
+  }
+
+  // LocalStorage fallback
+  return registerLocalStorage(data)
+}
+
+// LocalStorage registration (fallback)
+const registerLocalStorage = (data: AuthData): { success: boolean; message: string; user?: User } => {
   try {
     const { email, password, name, phone } = data
 
@@ -92,8 +111,24 @@ export const register = (data: AuthData): { success: boolean; message: string; u
   }
 }
 
-// Login user
-export const login = (email: string, password: string, remember: boolean = false): { success: boolean; message: string; user?: User } => {
+// Login user (uses database if configured, otherwise localStorage)
+export const login = async (email: string, password: string, remember: boolean = false): Promise<{ success: boolean; message: string; user?: User }> => {
+  // Try database first
+  if (isSupabaseConfigured) {
+    try {
+      return await loginWithDB({ email, password })
+    } catch (error) {
+      console.error('Database login failed, falling back to localStorage:', error)
+      // Fall through to localStorage
+    }
+  }
+
+  // LocalStorage fallback
+  return loginLocalStorage(email, password, remember)
+}
+
+// LocalStorage login (fallback)
+const loginLocalStorage = (email: string, password: string, remember: boolean = false): { success: boolean; message: string; user?: User } => {
   try {
     // Validate input
     if (!email || !password) {
@@ -133,14 +168,22 @@ export const login = (email: string, password: string, remember: boolean = false
 }
 
 // Logout user
-export const logout = (): void => {
-  if (typeof window === 'undefined') return
-  localStorage.removeItem(CURRENT_USER_KEY)
-  sessionStorage.removeItem(CURRENT_USER_KEY)
+export const logout = async (): Promise<void> => {
+  if (isSupabaseConfigured) {
+    await logoutFromDB()
+  } else {
+    if (typeof window === 'undefined') return
+    localStorage.removeItem(CURRENT_USER_KEY)
+    sessionStorage.removeItem(CURRENT_USER_KEY)
+  }
 }
 
 // Get current user
-export const getCurrentUser = (): User | null => {
+export const getCurrentUser = async (): Promise<User | null> => {
+  if (isSupabaseConfigured) {
+    return await getCurrentUserFromDB()
+  }
+
   if (typeof window === 'undefined') return null
   
   const localUser = localStorage.getItem(CURRENT_USER_KEY)
@@ -151,6 +194,11 @@ export const getCurrentUser = (): User | null => {
 }
 
 // Check if user is authenticated
-export const isAuthenticated = (): boolean => {
-  return getCurrentUser() !== null
+export const isAuthenticated = async (): Promise<boolean> => {
+  if (isSupabaseConfigured) {
+    return await isAuthenticatedDB()
+  }
+
+  const user = await getCurrentUser()
+  return user !== null
 }
