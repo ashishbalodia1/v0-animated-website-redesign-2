@@ -127,7 +127,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-20 pb-8 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#F7F9FC] pt-20 pb-8 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
         {/* Left Side - Info */}
         <div className="hidden lg:block space-y-8">

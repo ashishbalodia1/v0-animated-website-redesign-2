@@ -97,10 +97,10 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-20 pb-8 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#F7F9FC] pt-20 pb-8 flex items-center justify-center p-4">
       <div className="w-full max-w-5xl grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
         {/* Left Side - Form */}
-        <Card className="shadow-xl order-2 lg:order-1">
+        <Card className="shadow-xl order-2 lg:order-1 bg-white">
           <div className="p-4 sm:p-6 md:p-8">
             <div className="text-center mb-6 md:mb-8">
               <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 md:mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center">
