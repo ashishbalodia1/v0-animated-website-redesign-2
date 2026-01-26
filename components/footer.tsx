@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { ShoppingBag, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { FAQSection } from "@/components/faq-section"
 
 export function Footer() {
   const footerLinks = {
@@ -37,7 +38,9 @@ export function Footer() {
   ]
 
   return (
-    <footer className="bg-white border-t border-gray-200 mt-20">
+    <>
+      <FAQSection />
+      <footer className="bg-white border-t border-gray-200">
       <div className="container mx-auto px-4 py-12 md:py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
@@ -51,7 +54,7 @@ export function Footer() {
                 ElectronicsHub
               </span>
             </Link>
-            <p className="text-sm text-gray-700 mb-4 max-w-xs">
+            <p className="text-sm text-gray-600 mb-4 max-w-xs">
               Your trusted electronics components store. Quality products, competitive prices, and fast delivery across India.
             </p>
             <div className="space-y-2">
@@ -73,13 +76,13 @@ export function Footer() {
           {/* Links Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="font-semibold text-black mb-4">{category}</h3>
+              <h3 className="font-semibold text-gray-900 mb-4">{category}</h3>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-700 hover:text-[#2874F0] transition-colors"
+                      className="text-sm text-gray-600 hover:text-[#2874F0] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -92,7 +95,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-gray-600">
             © 2026 ElectronicsHub. All rights reserved. Built for makers and hobbyists.
           </p>
           <div className="flex items-center gap-4">
@@ -101,7 +104,7 @@ export function Footer() {
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all hover:scale-110"
+                className="w-9 h-9 rounded-full bg-gray-100 hover:bg-[#2874F0] text-gray-600 hover:text-white transition-all flex items-center justify-center"
               >
                 <social.icon className="w-4 h-4" />
               </a>
@@ -110,5 +113,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   )
 }

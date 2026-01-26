@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import { ProductDetailModal } from "@/components/product-detail-modal"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -169,6 +170,13 @@ export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false)
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
+  const [selectedProduct, setSelectedProduct] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleProductClick = (product: any) => {
+    setSelectedProduct(product)
+    setIsModalOpen(true)
+  }
 
   useEffect(() => {
     setIsVisible(true)
@@ -292,6 +300,7 @@ export default function HomePage() {
             {trendingProducts.map((product, index) => (
               <Card
                 key={product.id}
+                onClick={() => handleProductClick(product)}
                 className={`group relative overflow-hidden border-0 bg-white cursor-pointer transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-2 rounded-xl ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
@@ -568,6 +577,15 @@ export default function HomePage() {
           </Card>
         </div>
       </section>
+
+      {/* Product Detail Modal */}
+      {selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   )
 }

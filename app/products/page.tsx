@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
+import { ProductDetailModal } from "@/components/product-detail-modal"
 import { ShoppingCart, Heart, Star, Search, Filter, ChevronDown, X, SlidersHorizontal } from "lucide-react"
 import {
   DropdownMenu,
@@ -26,9 +27,16 @@ export default function ProductsPage() {
   const [priceRange, setPriceRange] = useState([0, 5000])
   const [selectedRatings, setSelectedRatings] = useState<number[]>([])
   const [showFilters, setShowFilters] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   
   const { addToCart, toggleWishlist, isInWishlist } = useCart()
   const { toast } = useToast()
+
+  const handleProductClick = (product: any, category: string) => {
+    setSelectedProduct({ ...product, category })
+    setIsModalOpen(true)
+  }
 
   const handleAddToCart = (product: any, category: string) => {
     addToCart({ ...product, category })
@@ -275,7 +283,11 @@ export default function ProductsPage() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {sortedProducts.map((product, idx) => (
-                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border-0 shadow-lg rounded-xl bg-white">
+                  <Card 
+                    key={idx} 
+                    onClick={() => handleProductClick(product, product.category)}
+                    className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border-0 shadow-lg rounded-xl bg-white cursor-pointer"
+                  >
                     <CardHeader className="p-0 relative">
                       <div className="relative aspect-square bg-white overflow-hidden product-image-container">
                         <Image
@@ -286,7 +298,10 @@ export default function ProductsPage() {
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                         <button
-                          onClick={() => handleToggleWishlist(product, product.category)}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleToggleWishlist(product, product.category)
+                          }}
                           className="absolute top-2 right-2 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all z-10 hover:scale-110 shadow-md"
                         >
                           <Heart
@@ -323,7 +338,10 @@ export default function ProductsPage() {
                     </CardContent>
                     <CardFooter className="p-4 pt-0 gap-2">
                       <Button 
-                        onClick={() => handleAddToCart(product, product.category)}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleAddToCart(product, product.category)
+                        }}
                         className="flex-1 group/btn font-semibold bg-[#FF9900] hover:bg-[#E68A00] text-white" 
                         size="sm"
                       >
@@ -338,6 +356,15 @@ export default function ProductsPage() {
           </main>
         </div>
       </div>
+
+      {/* Product Detail Modal */}
+      {selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   )
 }
