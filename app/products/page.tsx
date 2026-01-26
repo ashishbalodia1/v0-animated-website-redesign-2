@@ -101,22 +101,22 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-background pt-20">
       {/* Search Header */}
-      <div className="bg-background sticky top-16 z-40 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
+      <div className="bg-white sticky top-16 z-40 shadow-md">
+        <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-primary h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Search for Arduino, sensors, motors, displays..."
-                className="pl-12 pr-4 h-12 text-base"
+                className="pl-12 pr-4 h-14 text-base border-2 border-gray-200 focus:border-primary rounded-lg shadow-sm"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <Button
               variant="outline"
-              className="lg:hidden"
+              className="lg:hidden border-2 h-14"
               onClick={() => setShowFilters(!showFilters)}
             >
               <SlidersHorizontal className="h-4 w-4 mr-2" />
@@ -130,15 +130,17 @@ export default function ProductsPage() {
         <div className="flex gap-6">
           {/* Sidebar Filters */}
           <aside className={`lg:w-72 space-y-4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
-            <Card className="sticky top-32">
-              <CardHeader className="pb-3">
+            <Card className="sticky top-32 border-0 shadow-lg rounded-xl">
+              <CardHeader className="pb-3 bg-gradient-to-br from-gray-50 to-white rounded-t-xl">
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-bold flex items-center gap-2 text-foreground">
-                    <Filter className="h-5 w-5 text-[#2874F0]" />
+                    <div className="p-2 bg-primary rounded-lg">
+                      <Filter className="h-4 w-4 text-white" />
+                    </div>
                     Filters
                   </h2>
                   {(selectedCategory !== "all" || priceRange[0] !== 0 || priceRange[1] !== 5000 || selectedRatings.length > 0) && (
-                    <Button variant="ghost" size="sm" onClick={clearFilters} className="text-[#2874F0] hover:bg-blue-50">
+                    <Button variant="ghost" size="sm" onClick={clearFilters} className="text-primary hover:bg-primary/10 font-semibold">
                       Clear All
                     </Button>
                   )}
@@ -271,9 +273,9 @@ export default function ProductsPage() {
                 <Button onClick={clearFilters}>Clear Filters</Button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {sortedProducts.map((product, idx) => (
-                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden border-0 shadow-md">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border-0 shadow-lg rounded-xl bg-white">
                     <CardHeader className="p-0 relative">
                       <div className="relative aspect-square bg-white overflow-hidden product-image-container">
                         <Image

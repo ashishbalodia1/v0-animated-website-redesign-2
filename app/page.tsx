@@ -210,8 +210,9 @@ export default function HomePage() {
             <CarouselContent>
               {heroSlides.map((slide) => (
                 <CarouselItem key={slide.id}>
-                  <div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden group">
-                    <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient}`} />
+                  <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden group shadow-2xl">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${slide.bgGradient}`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     
                     <div className="relative h-full flex items-center">
                       <div className="container mx-auto px-8 md:px-12 grid md:grid-cols-2 gap-8 items-center">
@@ -270,12 +271,14 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-12">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <Flame className="w-8 h-8 text-orange-500" />
+                <div className="p-2 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg">
+                  <Flame className="w-6 h-6 text-white" />
+                </div>
                 <h2 className="text-3xl md:text-5xl font-bold">
-                  <span className="text-foreground">Trending</span> <span className="text-primary">Now</span>
+                  <span className="text-foreground">Trending</span> <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">Now</span>
                 </h2>
               </div>
-              <p className="text-black text-lg">Most popular products this week</p>
+              <p className="text-foreground/70 text-lg font-medium">Most popular products this week</p>
             </div>
             <Button variant="ghost" asChild className="hidden md:flex">
               <Link href="/services">
@@ -289,7 +292,7 @@ export default function HomePage() {
             {trendingProducts.map((product, index) => (
               <Card
                 key={product.id}
-                className={`group relative overflow-hidden border cursor-pointer transition-all duration-300 hover:shadow-xl ${
+                className={`group relative overflow-hidden border-0 bg-white cursor-pointer transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-2 rounded-xl ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
@@ -396,33 +399,33 @@ export default function HomePage() {
       </section>
 
       {/* Categories */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-black">
-              Shop by <span className="text-[#2874F0]">Category</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
+              Shop by <span className="bg-gradient-to-r from-[#2874F0] to-purple-600 bg-clip-text text-transparent">Category</span>
             </h2>
-            <p className="text-black text-lg">Find exactly what you need for your projects</p>
+            <p className="text-foreground/70 text-lg font-medium">Find exactly what you need for your projects</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {categories.map((category, index) => {
               const Icon = category.icon
               return (
                 <Link key={category.name} href={category.href}>
                   <Card
-                    className={`group relative overflow-hidden border cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                    className={`group relative overflow-hidden border-0 bg-white cursor-pointer transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-2 rounded-xl ${
                       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                     }`}
                     style={{ transitionDelay: `${index * 100}ms` }}
                   >
                     <div className="p-6 flex flex-col items-center text-center">
                       <div
-                        className={`w-16 h-16 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md`}
+                        className={`w-16 h-16 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                       >
                         <Icon className="w-8 h-8 text-white" />
                       </div>
-                      <h3 className="font-semibold text-sm text-black">{category.name}</h3>
+                      <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">{category.name}</h3>
                     </div>
                   </Card>
                 </Link>
@@ -437,9 +440,9 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
-              Why Shop <span className="text-[#2874F0]">With Us</span>
+              Why Shop <span className="bg-gradient-to-r from-[#2874F0] to-purple-600 bg-clip-text text-transparent">With Us</span>
             </h2>
-            <p className="text-foreground text-lg">Quality components, great prices, fast delivery</p>
+            <p className="text-foreground/70 text-lg font-medium">Quality components, great prices, fast delivery</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -448,17 +451,17 @@ export default function HomePage() {
               return (
                 <Card
                   key={index}
-                  className={`group relative overflow-hidden border cursor-pointer transition-all duration-300 hover:shadow-xl ${
+                  className={`group relative overflow-hidden border-0 bg-white cursor-pointer transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-2 rounded-xl ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <div className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-8 h-8 text-primary-foreground" />
+                  <div className="p-8 text-center">
+                    <div className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Icon className="w-10 h-10 text-white" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2 text-foreground">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                    <h3 className="font-bold text-xl mb-3 text-foreground group-hover:text-primary transition-colors">{feature.title}</h3>
+                    <p className="text-sm text-foreground/70 leading-relaxed">{feature.description}</p>
                   </div>
                 </Card>
               )
@@ -468,16 +471,16 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
-              Loved by <span className="text-[#2874F0]">Makers</span>
+              Loved by <span className="bg-gradient-to-r from-[#2874F0] to-purple-600 bg-clip-text text-transparent">Makers</span>
             </h2>
-            <p className="text-foreground text-lg">See what our community has to say</p>
+            <p className="text-foreground/70 text-lg font-medium">See what our community has to say</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 name: "Rahul Verma",
@@ -501,12 +504,12 @@ export default function HomePage() {
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className={`group bg-white border transition-all duration-500 hover:scale-105 hover:shadow-xl ${
+                className={`group bg-white border-0 transition-all duration-500 hover:-translate-y-2 shadow-lg hover:shadow-2xl rounded-xl ${
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="p-6">
+                <div className="p-8">
                   <div className="flex items-center gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
