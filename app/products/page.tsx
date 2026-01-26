@@ -273,14 +273,14 @@ export default function ProductsPage() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {sortedProducts.map((product, idx) => (
-                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden border-2 border-gray-200 hover:border-[#2874F0]/50 bg-white">
+                  <Card key={idx} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                     <CardHeader className="p-0 relative">
-                      <div className="relative aspect-square bg-gradient-to-br from-background to-muted/20 overflow-hidden">
+                      <div className="relative aspect-square bg-gradient-to-br from-background to-muted/20 overflow-hidden product-image-container">
                         <Image
                           src={`/${product.folder}/${product.image}`}
                           alt={product.name}
                           fill
-                          className="object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+                          className="object-contain group-hover:scale-110 transition-transform duration-500"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                         <button
@@ -314,7 +314,7 @@ export default function ProductsPage() {
                         {product.description}
                       </p>
                       <div className="flex items-baseline gap-2 mb-3">
-                        <span className="text-2xl font-bold text-[#2874F0]">₹{product.price}</span>
+                        <span className="text-2xl font-bold text-primary">₹{product.price}</span>
                         <span className="text-sm text-muted-foreground line-through">₹{Math.round(product.price * 1.3)}</span>
                         <span className="text-xs text-green-600 font-semibold">23% off</span>
                       </div>
@@ -322,7 +322,7 @@ export default function ProductsPage() {
                     <CardFooter className="p-4 pt-0 gap-2">
                       <Button 
                         onClick={() => handleAddToCart(product, product.category)}
-                        className="flex-1 group/btn font-semibold bg-[#FF9F00] hover:bg-[#FF9F00]/90 text-white" 
+                        className="flex-1 group/btn font-semibold bg-accent hover:bg-accent/90" 
                         size="sm"
                       >
                         <ShoppingCart className="h-4 w-4 mr-2 group-hover/btn:scale-110 transition-transform" />

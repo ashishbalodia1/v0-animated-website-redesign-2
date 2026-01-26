@@ -164,13 +164,6 @@ const features = [
   },
 ]
 
-const stats = [
-  { value: "120+", label: "Products" },
-  { value: "9", label: "Categories" },
-  { value: "500+", label: "Happy Makers" },
-  { value: "4.8/5", label: "Rating" },
-]
-
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
@@ -271,43 +264,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Search Bar Section */}
-      <section className="py-8 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="relative max-w-2xl mx-auto">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <Input
-              placeholder="Search for Arduino, sensors, modules..."
-              className="pl-12 h-14 border-2 shadow-lg"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className={`text-center transition-all duration-700 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="text-3xl md:text-4xl font-bold text-[#2874F0] mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-foreground font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trending Products Section */}
-      <section className="py-20 bg-white">
+      {/* Trending Products Section - Professional Layout */}
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-12">
             <div>
@@ -375,31 +333,31 @@ export default function HomePage() {
                   </Button>
                 </div>
 
-                {/* Image */}
-                <div className="relative aspect-square overflow-hidden bg-gray-50">
+                {/* Image with cropping container */}
+                <div className="relative aspect-square overflow-hidden bg-gray-50 product-image-container">
                   <img
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
-                    className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="font-semibold text-base mb-2 line-clamp-2 text-black group-hover:text-[#2874F0] transition-colors">
+                  <h3 className="font-semibold text-base mb-2 line-clamp-2 text-foreground group-hover:text-primary transition-colors">
                     {product.name}
                   </h3>
 
                   <div className="flex items-center gap-1 mb-2">
                     <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm font-medium text-black">{product.rating}</span>
-                    <span className="text-xs text-gray-600">({product.reviews})</span>
+                    <span className="text-sm font-medium text-foreground">{product.rating}</span>
+                    <span className="text-xs text-muted-foreground">({product.reviews})</span>
                   </div>
 
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl font-bold text-black">₹{product.price.toLocaleString()}</span>
+                    <span className="text-2xl font-bold text-foreground">₹{product.price.toLocaleString()}</span>
                     {product.originalPrice && (
-                      <span className="text-sm text-gray-500 line-through">
+                      <span className="text-sm text-muted-foreground line-through">
                         ₹{product.originalPrice.toLocaleString()}
                       </span>
                     )}
@@ -412,16 +370,11 @@ export default function HomePage() {
                         // Simple alert for demo - you can integrate with cart context later
                         alert(`${product.name} added to cart!`)
                       }}
-                      className="flex-1 bg-[#FF9F00] hover:bg-[#FF9F00]/90 text-white font-semibold transition-all"
+                      className="flex-1 bg-accent hover:bg-accent/90 font-semibold transition-all"
                     >
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       Add to Cart
                     </Button>
-                  </div>
-
-                  <div className="flex items-center gap-1 mt-3 text-xs text-gray-500">
-                    <Heart className="w-3 h-3" />
-                    <span>{product.likes.toLocaleString()} likes</span>
                   </div>
                 </div>
 
