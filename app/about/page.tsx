@@ -88,9 +88,9 @@ export default function AboutPage() {
             <h1 className="text-5xl md:text-7xl font-bold mb-8 text-balance leading-tight">
               <span className="bg-gradient-to-r from-[#2874F0] to-purple-600 bg-clip-text text-transparent">Your Trusted Partner</span>
               <br />
-              <span className="text-foreground">For Electronics</span>
+              <span className="text-black">For Electronics</span>
             </h1>
-            <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto font-medium">
+            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed max-w-3xl mx-auto font-medium">
               We started with a simple goal: provide quality electronics components to makers, hobbyists, and students 
               at competitive prices with fast delivery across India.
             </p>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-3xl md:text-4xl font-bold text-[#2874F0] mb-2">{stat.value}</div>
-                  <div className="text-sm text-foreground font-medium">{stat.label}</div>
+                  <div className="text-sm text-black font-medium">{stat.label}</div>
                 </div>
               )
             })}
@@ -134,7 +134,7 @@ export default function AboutPage() {
                   isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
                 }`}
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">
                   Our <span className="text-[#2874F0]">Mission</span>
                 </h2>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">

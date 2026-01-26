@@ -133,7 +133,7 @@ export default function ProductsPage() {
             <Card className="sticky top-32 border-0 shadow-lg rounded-xl">
               <CardHeader className="pb-3 bg-gradient-to-br from-gray-50 to-white rounded-t-xl">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-bold flex items-center gap-2 text-foreground">
+                  <h2 className="text-lg font-bold flex items-center gap-2 text-black">
                     <div className="p-2 bg-primary rounded-lg">
                       <Filter className="h-4 w-4 text-white" />
                     </div>
@@ -149,14 +149,14 @@ export default function ProductsPage() {
               <CardContent className="space-y-6">
                 {/* Categories */}
                 <div>
-                  <h3 className="font-semibold mb-3 text-sm uppercase text-foreground">Categories</h3>
+                  <h3 className="font-semibold mb-3 text-sm uppercase text-black">Categories</h3>
                   <div className="space-y-2">
                     <button
                       onClick={() => setSelectedCategory("all")}
-                      className={`w-full text-left px-3 py-2 rounded-md transition-colors text-sm ${
+                      className={`w-full text-left px-3 py-2 rounded-md transition-colors text-sm font-medium ${
                         selectedCategory === "all"
-                          ? "bg-primary text-primary-foreground font-medium"
-                          : "hover:bg-accent text-foreground"
+                          ? "bg-primary text-white"
+                          : "hover:bg-accent text-black"
                       }`}
                     >
                       All Products
@@ -213,7 +213,7 @@ export default function ProductsPage() {
                         />
                         <label
                           htmlFor={`rating-${rating}`}
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-1 cursor-pointer text-foreground"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-1 cursor-pointer text-black"
                         >
                           {rating}
                           <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
@@ -232,9 +232,9 @@ export default function ProductsPage() {
             {/* Results Bar */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
               <div>
-                <h1 className="text-2xl font-bold text-foreground">Electronics Components</h1>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Showing <span className="font-semibold text-foreground">{sortedProducts.length}</span> of {allProductsCount} products
+                <h1 className="text-2xl font-bold text-black">Electronics Components</h1>
+                <p className="text-sm text-gray-600 mt-1">
+                  Showing <span className="font-semibold text-black">{sortedProducts.length}</span> of {allProductsCount} products
                 </p>
               </div>
               <DropdownMenu>
