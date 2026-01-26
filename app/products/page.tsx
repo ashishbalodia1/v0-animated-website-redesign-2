@@ -99,17 +99,17 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-[#F7F9FC] pt-20">
       {/* Search Header */}
       <div className="bg-white sticky top-16 z-40 shadow-md">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-primary h-5 w-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#2874F0] h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Search for Arduino, sensors, motors, displays..."
-                className="pl-12 pr-4 h-14 text-base border-2 border-gray-200 focus:border-primary rounded-lg shadow-sm"
+                className="pl-12 pr-4 h-14 text-base border-2 border-gray-200 focus:border-[#2874F0] rounded-lg shadow-sm"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

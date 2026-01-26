@@ -72,9 +72,9 @@ export default function AboutPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-[#F7F9FC] pt-20">
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-primary/5 via-white to-purple-500/5">
+      <section className="relative py-24 overflow-hidden bg-white">
         <div className="container mx-auto px-4">
           <div
             className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
@@ -99,7 +99,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#F7F9FC]">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
@@ -125,7 +125,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">

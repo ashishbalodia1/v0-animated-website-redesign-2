@@ -190,9 +190,9 @@ export default function HomePage() {
   }, [api])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#F7F9FC]">
       {/* Hero Slideshow - Flipkart Style */}
-      <section className="pt-20 bg-background">
+      <section className="pt-20 bg-white">
         <div className="container mx-auto px-4">
           <Carousel
             opts={{
@@ -266,7 +266,7 @@ export default function HomePage() {
       </section>
 
       {/* Trending Products Section - Professional Layout */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-[#F7F9FC]">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-12">
             <div>
@@ -373,7 +373,7 @@ export default function HomePage() {
                         // Simple alert for demo - you can integrate with cart context later
                         alert(`${product.name} added to cart!`)
                       }}
-                      className="flex-1 bg-accent hover:bg-accent/90 font-semibold transition-all"
+                      className="flex-1 bg-[#FF9900] hover:bg-[#E68A00] text-white font-semibold transition-all shadow-md"
                     >
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       Add to Cart
@@ -399,7 +399,7 @@ export default function HomePage() {
       </section>
 
       {/* Categories */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
@@ -471,7 +471,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-20 bg-[#F7F9FC]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900">
@@ -533,7 +533,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <Card className="border-0 shadow-xl overflow-hidden bg-gradient-to-br from-[#2874F0] to-[#1e5bb8]">
             <div className="p-12 md:p-16 text-center">
