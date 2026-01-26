@@ -93,6 +93,47 @@ export const toggleQueryVisibility = (queryId: string): boolean => {
   return true
 }
 
+// Edit a query (only if not answered)
+export const editQuery = (
+  queryId: string, 
+  updates: { subject?: string; message?: string; category?: string }
+): boolean => {
+  const queries = getAllQueries()
+  const queryIndex = queries.findIndex(q => q.id === queryId)
+  
+  if (queryIndex === -1 || queries[queryIndex].status === "answered") return false
+  
+  if (updates.subject !== undefined) queries[queryIndex].subject = updates.subject
+  if (updates.message !== undefined) queries[queryIndex].message = updates.message
+  if (updates.category !== undefined) queries[queryIndex].category = updates.category
+  
+  localStorage.setItem("electronicsHub_queries", JSON.stringify(queries))
+  return true
+}
+
+// Edit an answer (admin only)
+export const editAnswer = (queryId: string, newAnswerText: string): boolean => {
+  const queries = getAllQueries()
+  const queryIndex = queries.findIndex(q => q.id === queryId)
+  
+  if (queryIndex === -1 || queries[queryIndex].status !== "answered" || !queries[queryIndex].answer) {
+    return false
+  }
+  
+  queries[queryIndex].answer!.text = newAnswerText
+  queries[queryIndex].answer!.answeredAt = Date.now()
+  
+  localStorage.setItem("electronicsHub_queries", JSON.stringify(queries))
+  return true
+}
+
+// Check if user owns a query
+export const isQueryOwner = (queryId: string, userEmail: string): boolean => {
+  const queries = getAllQueries()
+  const query = queries.find(q => q.id === queryId)
+  return query?.email === userEmail
+}
+
 // Search queries
 export const searchQueries = (searchTerm: string): Query[] => {
   const queries = getPublicQueries()

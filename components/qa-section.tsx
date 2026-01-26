@@ -5,22 +5,94 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { MessageCircle, Search, User, CheckCircle2, Clock } from "lucide-react"
-import { getPublicQueries, type Query } from "@/lib/queries"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { MessageCircle, Search, User, CheckCircle2, Clock, Edit2, Trash2, X, Save } from "lucide-react"
+import { getPublicQueries, deleteQuery, editQuery, isQueryOwner, type Query } from "@/lib/queries"
+import { getCurrentUser } from "@/lib/auth"
+import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
+
+const feedbackCategories = [
+  "General Inquiry",
+  "Product Question",
+  "Order Issue",
+  "Technical Support",
+  "Partnership",
+  "Other",
+]
 
 export function QASection() {
   const [queries, setQueries] = useState<Query[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
+  const [currentUser, setCurrentUser] = useState<any>(null)
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [editForm, setEditForm] = useState({ subject: "", message: "", category: "" })
+  const { toast } = useToast()
 
   useEffect(() => {
     loadQueries()
+    loadUser()
   }, [])
+
+  const loadUser = async () => {
+    const user = await getCurrentUser()
+    setCurrentUser(user)
+  }
 
   const loadQueries = () => {
     const allQueries = getPublicQueries()
     setQueries(allQueries)
+  }
+
+  const handleDelete = (queryId: string) => {
+    if (confirm("Are you sure you want to delete this question?")) {
+      const success = deleteQuery(queryId)
+      if (success) {
+        toast({
+          title: "Question Deleted",
+          description: "Your question has been removed",
+        })
+        loadQueries()
+      }
+    }
+  }
+
+  const handleEditStart = (query: Query) => {
+    setEditingId(query.id)
+    setEditForm({
+      subject: query.subject,
+      message: query.message,
+      category: query.category,
+    })
+  }
+
+  const handleEditSave = (queryId: string) => {
+    const success = editQuery(queryId, editForm)
+    if (success) {
+      toast({
+        title: "Question Updated",
+        description: "Your question has been updated successfully",
+      })
+      setEditingId(null)
+      loadQueries()
+    } else {
+      toast({
+        title: "Cannot Edit",
+        description: "You cannot edit answered questions",
+        variant: "destructive",
+      })
+    }
+  }
+
+  const handleEditCancel = () => {
+    setEditingId(null)
+    setEditForm({ subject: "", message: "", category: "" })
+  }
+
+  const canEditDelete = (query: Query) => {
+    return currentUser && isQueryOwner(query.id, currentUser.email)
   }
 
   const filteredQueries = queries.filter(q => {
@@ -120,23 +192,107 @@ export function QASection() {
                         <User className="w-5 h-5 text-[#2874F0]" />
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="font-semibold text-gray-900">{query.name}</span>
-                          <Badge className="bg-gray-100 text-gray-700 border-0 text-xs">
-                            {query.category}
-                          </Badge>
-                          <span className="text-xs text-gray-500">
-                            {new Date(query.timestamp).toLocaleDateString('en-IN', {
-                              day: 'numeric',
-                              month: 'short',
-                              year: 'numeric'
-                            })}
-                          </span>
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="font-semibold text-gray-900">{query.name}</span>
+                            <Badge className="bg-gray-100 text-gray-700 border-0 text-xs">
+                              {query.category}
+                            </Badge>
+                            <span className="text-xs text-gray-500">
+                              {new Date(query.timestamp).toLocaleDateString('en-IN', {
+                                day: 'numeric',
+                                month: 'short',
+                                year: 'numeric'
+                              })}
+                            </span>
+                          </div>
+                          
+                          {/* Edit/Delete buttons for query owner */}
+                          {canEditDelete(query) && query.status === "pending" && (
+                            <div className="flex gap-2">
+                              {editingId !== query.id && (
+                                <>
+                                  <Button
+                                    onClick={() => handleEditStart(query)}
+                                    variant="outline"
+                                    size="sm"
+                                    className="border-blue-300 text-blue-600 hover:bg-blue-50"
+                                  >
+                                    <Edit2 className="w-3 h-3" />
+                                  </Button>
+                                  <Button
+                                    onClick={() => handleDelete(query.id)}
+                                    variant="outline"
+                                    size="sm"
+                                    className="border-red-300 text-red-600 hover:bg-red-50"
+                                  >
+                                    <Trash2 className="w-3 h-3" />
+                                  </Button>
+                                </>
+                              )}
+                            </div>
+                          )}
                         </div>
-                        {query.subject && (
-                          <h4 className="font-semibold text-gray-900 mb-1">{query.subject}</h4>
+
+                        {editingId === query.id ? (
+                          /* Edit Form */
+                          <div className="space-y-3 mt-3 bg-blue-50 p-4 rounded-lg">
+                            <div>
+                              <Label className="text-sm font-semibold text-gray-900">Category</Label>
+                              <select
+                                value={editForm.category}
+                                onChange={(e) => setEditForm({ ...editForm, category: e.target.value })}
+                                className="w-full mt-1 px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-900"
+                              >
+                                {feedbackCategories.map((cat) => (
+                                  <option key={cat} value={cat}>{cat}</option>
+                                ))}
+                              </select>
+                            </div>
+                            <div>
+                              <Label className="text-sm font-semibold text-gray-900">Subject</Label>
+                              <Input
+                                value={editForm.subject}
+                                onChange={(e) => setEditForm({ ...editForm, subject: e.target.value })}
+                                className="mt-1 bg-white text-gray-900"
+                              />
+                            </div>
+                            <div>
+                              <Label className="text-sm font-semibold text-gray-900">Message</Label>
+                              <Textarea
+                                value={editForm.message}
+                                onChange={(e) => setEditForm({ ...editForm, message: e.target.value })}
+                                className="mt-1 bg-white text-gray-900 min-h-[80px]"
+                              />
+                            </div>
+                            <div className="flex gap-2">
+                              <Button
+                                onClick={() => handleEditSave(query.id)}
+                                size="sm"
+                                className="bg-green-600 hover:bg-green-700 text-white"
+                              >
+                                <Save className="w-3 h-3 mr-1" />
+                                Save
+                              </Button>
+                              <Button
+                                onClick={handleEditCancel}
+                                size="sm"
+                                variant="outline"
+                              >
+                                <X className="w-3 h-3 mr-1" />
+                                Cancel
+                              </Button>
+                            </div>
+                          </div>
+                        ) : (
+                          /* Display Question */
+                          <>
+                            {query.subject && (
+                              <h4 className="font-semibold text-gray-900 mb-1">{query.subject}</h4>
+                            )}
+                            <p className="text-gray-700 leading-relaxed">{query.message}</p>
+                          </>
                         )}
-                        <p className="text-gray-700 leading-relaxed">{query.message}</p>
                       </div>
                     </div>
                   </div>

@@ -18,9 +18,12 @@ import {
   Mail,
   Phone,
   User,
-  Filter
+  Filter,
+  Edit2,
+  Save,
+  X
 } from "lucide-react"
-import { getAllQueries, answerQuery, deleteQuery, toggleQueryVisibility, type Query } from "@/lib/queries"
+import { getAllQueries, answerQuery, deleteQuery, toggleQueryVisibility, editAnswer, type Query } from "@/lib/queries"
 import { getCurrentUser } from "@/lib/auth"
 import { useToast } from "@/hooks/use-toast"
 
@@ -32,6 +35,8 @@ export default function AdminQueriesPage() {
   const [filter, setFilter] = useState<"all" | "pending" | "answered">("all")
   const [answeringId, setAnsweringId] = useState<string | null>(null)
   const [answerText, setAnswerText] = useState("")
+  const [editingAnswerId, setEditingAnswerId] = useState<string | null>(null)
+  const [editAnswerText, setEditAnswerText] = useState("")
 
   useEffect(() => {
     checkAuth()
@@ -96,6 +101,38 @@ export default function AdminQueriesPage() {
       })
       loadQueries()
     }
+  }
+
+  const handleEditAnswer = (query: Query) => {
+    setEditingAnswerId(query.id)
+    setEditAnswerText(query.answer?.text || "")
+  }
+
+  const handleSaveEditedAnswer = (queryId: string) => {
+    if (!editAnswerText.trim()) {
+      toast({
+        title: "Answer required",
+        description: "Please enter an answer",
+        variant: "destructive",
+      })
+      return
+    }
+
+    const success = editAnswer(queryId, editAnswerText)
+    if (success) {
+      toast({
+        title: "Answer Updated",
+        description: "Your answer has been updated successfully",
+      })
+      setEditAnswerText("")
+      setEditingAnswerId(null)
+      loadQueries()
+    }
+  }
+
+  const handleCancelEditAnswer = () => {
+    setEditingAnswerId(null)
+    setEditAnswerText("")
   }
 
   const filteredQueries = queries.filter(q => {
@@ -285,16 +322,56 @@ export default function AdminQueriesPage() {
 
                   {/* Answer Section */}
                   {query.status === "answered" && query.answer ? (
-                    <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
-                      <div className="flex items-center gap-2 mb-2">
-                        <CheckCircle2 className="w-5 h-5 text-green-600" />
-                        <span className="font-semibold text-green-900">Your Answer</span>
-                        <span className="text-xs text-gray-600">
-                          {new Date(query.answer.answeredAt).toLocaleString('en-IN')}
-                        </span>
+                    editingAnswerId === query.id ? (
+                      /* Edit Answer Form */
+                      <div className="space-y-3">
+                        <Textarea
+                          placeholder="Edit your answer..."
+                          value={editAnswerText}
+                          onChange={(e) => setEditAnswerText(e.target.value)}
+                          className="min-h-[100px] text-gray-900"
+                        />
+                        <div className="flex gap-2">
+                          <Button
+                            onClick={() => handleSaveEditedAnswer(query.id)}
+                            className="bg-green-600 hover:bg-green-700 text-white"
+                          >
+                            <Save className="w-4 h-4 mr-2" />
+                            Save Changes
+                          </Button>
+                          <Button
+                            onClick={handleCancelEditAnswer}
+                            variant="outline"
+                          >
+                            <X className="w-4 h-4 mr-2" />
+                            Cancel
+                          </Button>
+                        </div>
                       </div>
-                      <p className="text-gray-800 leading-relaxed">{query.answer.text}</p>
-                    </div>
+                    ) : (
+                      /* Display Answer */
+                      <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <CheckCircle2 className="w-5 h-5 text-green-600" />
+                            <span className="font-semibold text-green-900">Your Answer</span>
+                            <span className="text-xs text-gray-600">
+                              {new Date(query.answer.answeredAt).toLocaleString('en-IN')}
+                            </span>
+                          </div>
+                          <Button
+                            onClick={() => handleEditAnswer(query)}
+                            variant="outline"
+                            size="sm"
+                            className="border-blue-300 text-blue-600 hover:bg-blue-50"
+                          >
+                            <Edit2 className="w-3 h-3 mr-1" />
+                            Edit
+                          </Button>
+                        </div>
+                        <p className="text-gray-800 leading-relaxed">{query.answer.text}</p>
+                      </div>
+                    )
                   ) : answeringId === query.id ? (
                     <div className="space-y-3">
                       <Textarea
