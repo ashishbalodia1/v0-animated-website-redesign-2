@@ -171,6 +171,99 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 px-4 py-2 bg-[#2874F0] text-white border-0">
+              What We Do
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              Our <span className="text-[#2874F0]">Services</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Professional services to support your academic and research endeavors
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[
+              {
+                icon: "📝",
+                title: "Research Paper Writing",
+                description: "Professional assistance with research papers, journals, and conference publications in IEEE, Springer, Elsevier formats.",
+                features: ["Literature Review", "Technical Writing", "Citation Management"]
+              },
+              {
+                icon: "💡",
+                title: "Patent Filing",
+                description: "Complete patent documentation and filing services for your innovative ideas and inventions.",
+                features: ["Patent Drafting", "Prior Art Search", "Application Filing"]
+              },
+              {
+                icon: "📚",
+                title: "Project Documentation",
+                description: "Comprehensive documentation for final year projects, dissertations, and thesis work.",
+                features: ["Technical Reports", "User Manuals", "Project Guides"]
+              },
+              {
+                icon: "🎓",
+                title: "Academic Support",
+                description: "End-to-end support for academic projects, from concept to implementation.",
+                features: ["Project Guidance", "Consultation", "Review Services"]
+              },
+              {
+                icon: "🔧",
+                title: "Technical Consultation",
+                description: "Expert consultation for IoT, robotics, and embedded systems projects.",
+                features: ["Circuit Design", "Code Review", "Troubleshooting"]
+              },
+              {
+                icon: "📊",
+                title: "Presentation Services",
+                description: "Professional presentation design for project vivas, seminars, and conferences.",
+                features: ["PPT Design", "Poster Design", "Infographics"]
+              },
+            ].map((service, index) => (
+              <Card
+                key={index}
+                className={`group hover:shadow-xl transition-all duration-500 hover:-translate-y-2 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="p-6">
+                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-[#2874F0] transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <div className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#2874F0]"></div>
+                        <span className="text-muted-foreground">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button asChild size="lg" className="bg-[#2874F0] hover:bg-[#2366d1] text-white">
+              <Link href="/services">
+                View All Services
+                <ChevronRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Values Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">

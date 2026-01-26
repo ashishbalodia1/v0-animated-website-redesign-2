@@ -83,7 +83,7 @@ const heroSlides = [
     title: "Displays & Screens",
     subtitle: "Starting from ₹199",
     description: "OLED, LCD, TFT - All types available",
-    image: "/7. Display Modules/OLED 0.96 inch.png",
+    image: "/5. Displays & Indicators/OLED Display.jpg",
     bgGradient: "from-green-600 to-green-800",
     buttonText: "Shop Now",
     discount: "Up to 35% OFF",
