@@ -109,7 +109,7 @@ export function ProductDetailModal({ product, isOpen, onClose, onAddToCart }: Pr
           {/* Right: Details */}
           <div className="space-y-4">
             <div>
-              <Badge className="bg-[#2874F0] text-white mb-2">
+              <Badge className="bg-[#2874F0] text-white mb-2 border-0 font-semibold">
                 {product.category}
               </Badge>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">{product.name}</h3>
@@ -151,11 +151,11 @@ export function ProductDetailModal({ product, isOpen, onClose, onAddToCart }: Pr
 
             {/* Specifications */}
             <div>
-              <h4 className="font-bold text-gray-900 mb-3">Specifications</h4>
-              <div className="space-y-2">
+              <h4 className="font-bold text-gray-900 mb-3 text-lg">Specifications</h4>
+              <div className="space-y-2 bg-gray-50 rounded-lg p-4">
                 {specifications.map((spec, idx) => (
-                  <div key={idx} className="flex justify-between py-2 border-b border-gray-100">
-                    <span className="text-gray-600">{spec.label}</span>
+                  <div key={idx} className="flex justify-between py-2 border-b border-gray-200 last:border-0">
+                    <span className="text-gray-700 font-medium">{spec.label}</span>
                     <span className="font-semibold text-gray-900">{spec.value}</span>
                   </div>
                 ))}
@@ -164,10 +164,10 @@ export function ProductDetailModal({ product, isOpen, onClose, onAddToCart }: Pr
 
             {/* Features */}
             <div>
-              <h4 className="font-bold text-gray-900 mb-3">Key Features</h4>
-              <div className="grid grid-cols-2 gap-2">
+              <h4 className="font-bold text-gray-900 mb-3 text-lg">Key Features</h4>
+              <div className="grid grid-cols-2 gap-3 bg-gray-50 rounded-lg p-4">
                 {features.map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-sm text-gray-700">
+                  <div key={idx} className="flex items-center gap-2 text-sm text-gray-800 font-medium">
                     <Shield className="w-4 h-4 text-[#2874F0]" />
                     {feature}
                   </div>

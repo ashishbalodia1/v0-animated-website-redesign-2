@@ -2,6 +2,7 @@
 // Uses Supabase database when configured, falls back to localStorage
 import { registerWithDB, loginWithDB, logoutFromDB, getCurrentUserFromDB, isAuthenticatedDB } from './auth-db'
 import { isSupabaseConfigured } from './supabase'
+import { sendWelcomeEmail, sendLoginNotification } from './email'
 
 export interface User {
   id: string
@@ -82,7 +83,10 @@ const registerLocalStorage = (data: AuthData): { success: boolean; message: stri
     // Check if user already exists
     const users = getUsers()
     if (users[email]) {
-      return { success: false, message: 'Email already registered' }
+      return { 
+        success: false, 
+        message: 'Account already exists! This email is already registered. Please try logging in instead.' 
+      }
     }
 
     // Create new user
@@ -101,9 +105,14 @@ const registerLocalStorage = (data: AuthData): { success: boolean; message: stri
 
     saveUsers(users)
 
+    // Send welcome email (async, don't wait)
+    sendWelcomeEmail(email, name).catch(err => 
+      console.error('Failed to send welcome email:', err)
+    )
+
     return {
       success: true,
-      message: 'Account created successfully!',
+      message: 'Account created successfully! Welcome to ElectronicsHub. Check your email for confirmation.',
       user,
     }
   } catch (error) {
@@ -140,12 +149,18 @@ const loginLocalStorage = (email: string, password: string, remember: boolean = 
     const user = users[email]
 
     if (!user) {
-      return { success: false, message: 'Invalid email or password' }
+      return { 
+        success: false, 
+        message: 'No account found! This email is not registered. Please create an account first.' 
+      }
     }
 
     // Verify password
     if (!verifyPassword(password, user.password)) {
-      return { success: false, message: 'Invalid email or password' }
+      return { 
+        success: false, 
+        message: 'Invalid password! Please check your password and try again.' 
+      }
     }
 
     // Set current user
@@ -157,9 +172,14 @@ const loginLocalStorage = (email: string, password: string, remember: boolean = 
       sessionStorage.setItem(CURRENT_USER_KEY, JSON.stringify(userWithoutPassword))
     }
 
+    // Send login notification email (async, don't wait)
+    sendLoginNotification(email, user.name).catch(err => 
+      console.error('Failed to send login notification:', err)
+    )
+
     return {
       success: true,
-      message: 'Login successful!',
+      message: 'Logged in successfully! Welcome back to ElectronicsHub.',
       user: userWithoutPassword,
     }
   } catch (error) {

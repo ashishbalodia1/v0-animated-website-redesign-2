@@ -1,5 +1,6 @@
 // Database-backed authentication using Supabase
 import { supabase, isSupabaseConfigured, type User, type AuthResponse } from './supabase'
+import { sendWelcomeEmail, sendLoginNotification } from './email'
 
 const CURRENT_USER_KEY = 'electronicsHub_currentUser'
 
@@ -17,11 +18,11 @@ export const registerWithDB = async (data: {
   try {
     // Validate input
     if (!data.email || !data.password) {
-      return { success: false, message: 'Email and password are required' }
+      return { success: false, message: '⚠️ Email and password are required' }
     }
 
     if (data.password.length < 6) {
-      return { success: false, message: 'Password must be at least 6 characters' }
+      return { success: false, message: '⚠️ Password must be at least 6 characters long' }
     }
 
     // Sign up with Supabase Auth
@@ -37,6 +38,9 @@ export const registerWithDB = async (data: {
     })
 
     if (authError) {
+      if (authError.message.includes('already registered')) {
+        return { success: false, message: '⚠️ Account already exists! This email is already registered. Please try logging in instead.' }
+      }
       return { success: false, message: authError.message }
     }
 
@@ -73,9 +77,14 @@ export const registerWithDB = async (data: {
       localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user))
     }
 
+    // Send welcome email (async, don't wait)
+    sendWelcomeEmail(user.email, user.name).catch(err => 
+      console.error('Failed to send welcome email:', err)
+    )
+
     return {
       success: true,
-      message: 'Account created successfully! Please check your email to verify.',
+      message: '✅ Account created successfully! Welcome to ElectronicsHub. Check your email for confirmation.',
       user
     }
   } catch (error: any) {
@@ -108,7 +117,10 @@ export const loginWithDB = async (data: {
     })
 
     if (authError) {
-      return { success: false, message: 'Invalid email or password' }
+      if (authError.message.includes('Invalid login')) {
+        return { success: false, message: 'No account found! This email is not registered. Please create an account first.' }
+      }
+      return { success: false, message: 'Invalid credentials! Please check your email and password.' }
     }
 
     if (!authData.user) {
@@ -135,9 +147,14 @@ export const loginWithDB = async (data: {
       localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user))
     }
 
+    // Send login notification email (async, don't wait)
+    sendLoginNotification(user.email, user.name).catch(err => 
+      console.error('Failed to send login notification:', err)
+    )
+
     return {
       success: true,
-      message: 'Login successful!',
+      message: 'Logged in successfully! Welcome back to ElectronicsHub.',
       user
     }
   } catch (error: any) {
