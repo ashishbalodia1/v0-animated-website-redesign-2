@@ -52,25 +52,32 @@ export default function LoginPage() {
 
     setIsLoading(true)
 
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    try {
+      const result = await login(formData.email, formData.password, formData.remember)
 
-    const result = login(formData.email, formData.password, formData.remember)
+      if (result.success) {
+        toast({
+          title: "Login Successful",
+          description: result.message || `Welcome back, ${result.user?.name}!`,
+        })
 
-    if (result.success) {
+        // Redirect to home page after successful login
+        setTimeout(() => {
+          router.push("/")
+          router.refresh()
+        }, 500)
+      } else {
+        toast({
+          title: "Login Failed",
+          description: result.message,
+          variant: "destructive",
+        })
+        setIsLoading(false)
+      }
+    } catch (error) {
       toast({
-        title: "✓ Login Successful",
-        description: `Welcome back, ${result.user?.name}!`,
-      })
-
-      // Redirect to home page after successful login
-      setTimeout(() => {
-        router.push("/")
-      }, 500)
-    } else {
-      toast({
-        title: "✗ Login Failed",
-        description: result.message,
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       })
       setIsLoading(false)

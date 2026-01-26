@@ -28,12 +28,15 @@ export function Navigation() {
 
   useEffect(() => {
     // Check if user is logged in
-    const currentUser = getCurrentUser()
-    setUser(currentUser)
+    const loadUser = async () => {
+      const currentUser = await getCurrentUser()
+      setUser(currentUser)
+    }
+    loadUser()
   }, [pathname]) // Re-check on route change
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await logout()
     setUser(null)
     router.push("/")
   }
@@ -110,9 +113,11 @@ export function Navigation() {
                 <DropdownMenuContent align="end" className="w-56 bg-white border-gray-200">
                   <DropdownMenuLabel className="text-black">My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator className="bg-gray-200" />
-                  <DropdownMenuItem className="text-black hover:bg-blue-50 cursor-pointer">
-                    <User className="h-4 w-4 mr-2" />
-                    Profile
+                  <DropdownMenuItem asChild className="text-black hover:bg-blue-50 cursor-pointer">
+                    <Link href="/profile">
+                      <User className="h-4 w-4 mr-2" />
+                      Profile
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={handleLogout}

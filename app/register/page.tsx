@@ -78,30 +78,36 @@ export default function RegisterPage() {
 
     setIsLoading(true)
 
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
-    const result = register({
-      email: formData.email,
-      password: formData.password,
-      name: formData.name,
-      phone: formData.phone,
-    })
-
-    if (result.success) {
-      toast({
-        title: "✓ Account Created Successfully",
-        description: "Welcome to ElectronicsHub! Redirecting to login...",
+    try {
+      const result = await register({
+        email: formData.email,
+        password: formData.password,
+        name: formData.name,
+        phone: formData.phone,
       })
 
-      // Redirect to login page after successful registration
-      setTimeout(() => {
-        router.push("/login")
-      }, 1500)
-    } else {
+      if (result.success) {
+        toast({
+          title: "Account Created Successfully",
+          description: result.message || "Welcome to ElectronicsHub! Redirecting to login...",
+        })
+
+        // Redirect to login page after successful registration
+        setTimeout(() => {
+          router.push("/login")
+        }, 1500)
+      } else {
+        toast({
+          title: "Registration Failed",
+          description: result.message,
+          variant: "destructive",
+        })
+        setIsLoading(false)
+      }
+    } catch (error) {
       toast({
-        title: "✗ Registration Failed",
-        description: result.message,
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       })
       setIsLoading(false)
