@@ -222,20 +222,19 @@ export const sendQueryNotification = async (queryData: {
               </div>
             </div>
 
-            <div style="text-align: center; margin-top: 25px; padding: 20px; background: white; border-radius: 8px;">
-              <p style="margin: 0 0 15px 0; color: #666;">Quick Actions:</p>
-              <a href="mailto:${queryData.email}" style="display: inline-block; background: #2874F0; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 5px;">
-                ✉️ Reply via Email
+            <div style="text-center: center; margin-top: 25px; padding: 20px; background: white; border-radius: 8px;">
+              <p style="margin: 0 0 15px 0; color: #666;">📌 Important: This is just a notification.</p>
+              <p style="margin: 0 0 15px 0; color: #333; font-weight: bold;">Answer this query on the website admin panel:</p>
+              <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/admin/queries" style="display: inline-block; background: #2874F0; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 5px;">
+                🌐 Go to Admin Panel
               </a>
-              ${queryData.phone ? `
-              <a href="tel:${queryData.phone}" style="display: inline-block; background: #25D366; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 5px;">
-                📞 Call Customer
-              </a>
-              ` : ''}
+              <p style="margin: 15px 0 0 0; font-size: 14px; color: #666;">
+                Your answer will be visible to all customers on the website
+              </p>
             </div>
 
-            <p style="margin-top: 20px; padding: 15px; background: #e7f3ff; border-radius: 5px; font-size: 14px;">
-              <strong>📌 Note:</strong> Please respond to this query within 24 hours to maintain customer satisfaction.
+            <p style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 5px; font-size: 14px;">
+              <strong>⚠️ Do not reply to this email.</strong> All responses must be posted on the website admin panel so customers can see them.
             </p>
           </div>
           <div class="footer">
@@ -249,7 +248,7 @@ export const sendQueryNotification = async (queryData: {
 
   return await sendEmail({
     to: 'Helpingengineers24@gmail.com',
-    subject: `🔔 New ${queryData.category} Query from ${queryData.name}`,
+    subject: `🔔 New ${queryData.category} Query - Answer on Website`,
     html,
   })
 }

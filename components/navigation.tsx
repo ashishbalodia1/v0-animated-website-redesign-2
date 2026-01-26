@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Menu, X, ShoppingBag, User, LogOut } from "lucide-react"
+import { Menu, X, ShoppingBag, User, LogOut, MessageCircle } from "lucide-react"
 import { useState, useEffect } from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { CartButton } from "@/components/cart-button"
@@ -117,6 +117,12 @@ export function Navigation() {
                     <Link href="/profile">
                       <User className="h-4 w-4 mr-2" />
                       Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild className="text-black hover:bg-blue-50 cursor-pointer">
+                    <Link href="/admin/queries">
+                      <MessageCircle className="h-4 w-4 mr-2" />
+                      Manage Queries
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem 

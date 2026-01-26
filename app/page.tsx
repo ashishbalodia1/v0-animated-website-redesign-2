@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { ProductDetailModal } from "@/components/product-detail-modal"
+import { QASection } from "@/components/qa-section"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -577,6 +578,11 @@ export default function HomePage() {
           </Card>
         </div>
       </section>
+
+      {/* Q&A Section */}
+      <div id="qa">
+        <QASection />
+      </div>
 
       {/* Product Detail Modal */}
       {selectedProduct && (

@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { MessageCircle, Mail, Phone, MapPin, Send, CheckCircle2, Clock, HeadphonesIcon } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { sendQueryNotification, sendQueryConfirmation } from "@/lib/email"
+import { sendQueryNotification } from "@/lib/email"
+import { addQuery } from "@/lib/queries"
 
 const contactMethods = [
   {
@@ -83,40 +84,45 @@ export default function FeedbackPage() {
     try {
       const fullName = `${formData.firstName} ${formData.lastName}`.trim()
       
-      // Send notification to admin
-      const adminResult = await sendQueryNotification({
+      // Save query to website (localStorage)
+      const newQuery = addQuery({
+        name: fullName,
+        email: formData.email,
+        phone: formData.phone,
+        category: selectedCategory,
+        subject: formData.subject,
+        message: formData.message,
+      })
+
+      // Send notification email to admin (just for alert)
+      await sendQueryNotification({
         name: fullName,
         email: formData.email,
         phone: formData.phone,
         category: selectedCategory,
         message: `Subject: ${formData.subject}\n\n${formData.message}`,
       })
+      
+      toast({
+        title: "✅ Question Posted Successfully!",
+        description: "Your question is now visible. We'll answer it soon on the website.",
+      })
 
-      if (adminResult.success) {
-        // Send confirmation to customer
-        await sendQueryConfirmation(formData.email, fullName, selectedCategory)
-        
-        toast({
-          title: "✅ Message Sent Successfully!",
-          description: "We'll respond within 24 hours. Check your email for confirmation.",
-        })
-
-        // Reset form
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        })
-        setSelectedCategory(feedbackCategories[0])
-      } else {
-        toast({
-          title: "Query Saved",
-          description: "Email service unavailable, but your query has been recorded.",
-        })
-      }
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      })
+      setSelectedCategory(feedbackCategories[0])
+      
+      // Redirect to Q&A page after 2 seconds
+      setTimeout(() => {
+        window.location.href = "/#qa"
+      }, 2000)
     } catch (error) {
       console.error("Error submitting query:", error)
       toast({
