@@ -193,9 +193,22 @@ export function Navigation() {
                     <Button 
                       variant="outline" 
                       className="w-full bg-white text-black border-gray-300 font-semibold"
+                      asChild
                     >
-                      <User className="h-4 w-4 mr-2" />
-                      Profile
+                      <Link href="/profile" onClick={() => setIsOpen(false)}>
+                        <User className="h-4 w-4 mr-2" />
+                        Profile
+                      </Link>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="w-full bg-white text-black border-gray-300 font-semibold"
+                      asChild
+                    >
+                      <Link href="/admin/queries" onClick={() => setIsOpen(false)}>
+                        <MessageCircle className="h-4 w-4 mr-2" />
+                        Manage Queries
+                      </Link>
                     </Button>
                     <Button 
                       onClick={() => {

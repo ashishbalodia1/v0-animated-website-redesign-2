@@ -127,8 +127,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pt-20 flex items-center justify-center p-4 pb-20">
-      <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
+    <div className="min-h-screen bg-background pt-20 pb-8 flex items-center justify-center p-4">
+      <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
         {/* Left Side - Info */}
         <div className="hidden lg:block space-y-8">
           <div className="space-y-4">
@@ -176,88 +176,88 @@ export default function RegisterPage() {
 
         {/* Right Side - Form */}
         <Card className="shadow-xl">
-          <div className="p-8">
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center">
-                <UserPlus className="w-8 h-8 text-white" />
+          <div className="p-4 sm:p-6 md:p-8">
+            <div className="text-center mb-6 md:mb-8">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 md:mb-4 rounded-2xl bg-[#2874F0] flex items-center justify-center">
+                <UserPlus className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-2 text-gray-900">Create Account</h2>
-              <p className="text-gray-600">Sign up to start shopping</p>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-900">Create Account</h2>
+              <p className="text-sm sm:text-base text-gray-600">Sign up to start shopping</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name" className="text-sm sm:text-base">Full Name</Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
                   <Input
                     id="name"
                     type="text"
                     placeholder="John Doe"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`pl-11 h-11 ${
+                    className={`pl-10 sm:pl-11 h-10 sm:h-11 text-sm sm:text-base ${
                       errors.name ? "border-red-500" : ""
                     }`}
                     disabled={isLoading}
                   />
                 </div>
                 {errors.name && (
-                  <p className="text-sm text-red-500 mt-1">{errors.name}</p>
+                  <p className="text-xs sm:text-sm text-red-500 mt-1">{errors.name}</p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email" className="text-sm sm:text-base">Email Address</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`pl-11 h-11 bg-white text-black placeholder:text-gray-400 border-gray-300 ${
+                    className={`pl-10 sm:pl-11 h-10 sm:h-11 text-sm sm:text-base bg-white text-black placeholder:text-gray-400 border-gray-300 ${
                       errors.email ? "border-red-500" : ""
                     }`}
                     disabled={isLoading}
                   />
                 </div>
                 {errors.email && (
-                  <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                  <p className="text-xs sm:text-sm text-red-500 mt-1">{errors.email}</p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
+                <Label htmlFor="phone" className="text-sm sm:text-base">Phone Number</Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
                   <Input
                     id="phone"
                     type="tel"
                     placeholder="9876543210"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`pl-11 h-11 bg-white text-black placeholder:text-gray-400 border-gray-300 ${
+                    className={`pl-10 sm:pl-11 h-10 sm:h-11 text-sm sm:text-base bg-white text-black placeholder:text-gray-400 border-gray-300 ${
                       errors.phone ? "border-red-500" : ""
                     }`}
                     disabled={isLoading}
                   />
                 </div>
                 {errors.phone && (
-                  <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
+                  <p className="text-xs sm:text-sm text-red-500 mt-1">{errors.phone}</p>
                 )}
               </div>              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-sm sm:text-base">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Create a strong password"
                     value={formData.password}
                     onChange={handleChange}
-                    className={`pl-11 pr-11 h-11 ${
+                    className={`pl-10 sm:pl-11 pr-10 sm:pr-11 h-10 sm:h-11 text-sm sm:text-base ${
                       errors.password ? "border-red-500" : ""
                     }`}
                     disabled={isLoading}
@@ -268,25 +268,25 @@ export default function RegisterPage() {
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                     disabled={isLoading}
                   >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showPassword ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="text-sm text-red-500 mt-1">{errors.password}</p>
+                  <p className="text-xs sm:text-sm text-red-500 mt-1">{errors.password}</p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="text-sm sm:text-base">Confirm Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Re-enter your password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className={`pl-11 pr-11 h-11 ${
+                    className={`pl-10 sm:pl-11 pr-10 sm:pr-11 h-10 sm:h-11 text-sm sm:text-base ${
                       errors.confirmPassword ? "border-red-500" : ""
                     }`}
                     disabled={isLoading}
@@ -297,11 +297,11 @@ export default function RegisterPage() {
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                     disabled={isLoading}
                   >
-                    {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showConfirmPassword ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
                   </button>
                 </div>
                 {errors.confirmPassword && (
-                  <p className="text-sm text-red-500 mt-1">{errors.confirmPassword}</p>
+                  <p className="text-xs sm:text-sm text-red-500 mt-1">{errors.confirmPassword}</p>
                 )}
               </div>
 
@@ -315,7 +315,7 @@ export default function RegisterPage() {
                     className="mt-1 w-4 h-4 rounded border-gray-300 text-[#2874F0] focus:ring-[#2874F0]"
                     disabled={isLoading}
                   />
-                  <Label htmlFor="agree" className="text-sm text-gray-600 font-normal cursor-pointer">
+                  <Label htmlFor="agree" className="text-xs sm:text-sm text-gray-600 font-normal cursor-pointer">
                     I agree to the{" "}
                     <Link href="/terms" className="text-[#2874F0] hover:underline">
                       Terms & Conditions
@@ -327,14 +327,14 @@ export default function RegisterPage() {
                   </Label>
                 </div>
                 {errors.agree && (
-                  <p className="text-sm text-red-500 mt-1">{errors.agree}</p>
+                  <p className="text-xs sm:text-sm text-red-500 mt-1">{errors.agree}</p>
                 )}
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full h-12 bg-[#2874F0] text-white hover:bg-[#2366d1] transition-all font-semibold"
+                className="w-full h-10 sm:h-12 text-sm sm:text-base bg-[#2874F0] text-white hover:bg-[#2366d1] transition-all font-semibold"
                 disabled={isLoading}
               >
                 {isLoading ? (
