@@ -26,6 +26,8 @@ import {
 } from "lucide-react"
 import { getCurrentUser, logout } from "@/lib/auth"
 import { useToast } from "@/hooks/use-toast"
+import { useCart } from "@/contexts/CartContext"
+import Image from "next/image"
 
 interface Address {
   id: string
@@ -42,6 +44,7 @@ interface Address {
 export default function ProfilePage() {
   const router = useRouter()
   const { toast } = useToast()
+  const { wishlist, toggleWishlist, addToCart, isInWishlist } = useCart()
   const [user, setUser] = useState<any>(null)
   const [isEditing, setIsEditing] = useState(false)
   const [activeTab, setActiveTab] = useState("profile")
@@ -588,19 +591,83 @@ export default function ProfilePage() {
             {/* Wishlist Tab */}
             {activeTab === "wishlist" && (
               <Card className="p-6 border-0 shadow-lg">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">My Wishlist</h2>
-                <div className="text-center py-12">
-                  <Heart className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-600 font-medium">Your wishlist is empty</p>
-                  <p className="text-gray-500 text-sm mt-2">Add products you like to your wishlist</p>
-                  <Button
-                    onClick={() => router.push("/products")}
-                    className="mt-4 bg-[#2874F0] hover:bg-[#1e5bb8]"
-                  >
-                    <ShoppingBag className="w-4 h-4 mr-2" />
-                    Browse Products
-                  </Button>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">My Wishlist</h2>
+                  {wishlist.length > 0 && (
+                    <Badge className="bg-pink-500 text-white border-0 text-base px-3 py-1">
+                      {wishlist.length} {wishlist.length === 1 ? 'item' : 'items'}
+                    </Badge>
+                  )}
                 </div>
+
+                {wishlist.length === 0 ? (
+                  <div className="text-center py-12">
+                    <Heart className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                    <p className="text-gray-600 font-medium">Your wishlist is empty</p>
+                    <p className="text-gray-500 text-sm mt-2">Add products you like to your wishlist</p>
+                    <Button
+                      onClick={() => router.push("/products")}
+                      className="mt-4 bg-[#2874F0] hover:bg-[#1e5bb8]"
+                    >
+                      <ShoppingBag className="w-4 h-4 mr-2" />
+                      Browse Products
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {wishlist.map((item) => (
+                      <Card key={item.name} className="overflow-hidden hover:shadow-lg transition-shadow">
+                        <div className="relative h-48 bg-gray-50">
+                          <Image
+                            src={`/${item.folder}/${item.image}`}
+                            alt={item.name}
+                            fill
+                            className="object-contain p-4"
+                          />
+                        </div>
+                        <div className="p-4">
+                          <h3 className="font-semibold text-gray-900 line-clamp-2 mb-2 min-h-[3rem]">
+                            {item.name}
+                          </h3>
+                          <p className="text-sm text-gray-600 mb-3">{item.category}</p>
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="text-2xl font-bold text-[#2874F0]">₹{item.price}</span>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              onClick={() => {
+                                addToCart(item)
+                                toast({
+                                  title: "Added to Cart",
+                                  description: `${item.name} has been added to your cart`,
+                                })
+                              }}
+                              className="flex-1 bg-[#FF9900] hover:bg-[#e68a00] text-white"
+                            >
+                              <ShoppingBag className="w-4 h-4 mr-2" />
+                              Add to Cart
+                            </Button>
+                            <Button
+                              onClick={() => {
+                                toggleWishlist(item)
+                                toast({
+                                  title: "Removed from Wishlist",
+                                  description: `${item.name} has been removed`,
+                                  variant: "destructive",
+                                })
+                              }}
+                              variant="outline"
+                              size="icon"
+                              className="border-red-300 text-red-600 hover:bg-red-50"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </Card>
             )}
           </div>
